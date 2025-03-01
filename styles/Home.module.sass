@@ -4,9 +4,13 @@
     flex-direction: column
     gap: ds.rem(17)
     margin: 0 auto
+    border-bottom: ds.rem(2) solid ds.$hex-gray-light
     padding: ds.rem(53) 0
     max-width: ds.rem(404)
-    border-bottom: ds.rem(2) solid ds.$hex-gray-light
+
+    &:last-of-type
+      border-bottom: 0
+      padding-bottom: 0
 
     h2
       font-size: ds.rem(24)
@@ -19,13 +23,21 @@
 
       .group
         display: flex
+        height: ds.rem(53)
+
+      label
+        display: flex
+        align-items: center
 
       select, input, label
+        height: ds.rem(53)
         font-size: ds.rem(37)
+        line-height: 1
 
       select, input
         appearance: none
         background-color: transparent
+        height: ds.rem(53)
         border: 0
         border-bottom: ds.rem(2) solid ds.$hex-gray-light
         padding: 0
@@ -55,7 +67,10 @@
           width: ds.rem(255)
 
       button
-        background-color: transparent
+        transition: background 0.3s ease-in-out, transform 0.2s
+        position: relative
+        overflow: hidden
+        background-color: ds.$hex-white
         border: ds.rem(2) solid
         border-radius: ds.rem(54)
         padding: ds.rem(17)
@@ -63,7 +78,40 @@
         @include ds.fw(900)
         color: ds.$hex-accent-light
 
+        &::before
+          content: ''
+          position: absolute
+          top: 50%
+          left: 50%
+          width: 300%
+          height: 300%
+          background: radial-gradient(circle, ds.$hex-accent-light 0%, ds.$hex-white 100%)
+          transition: transform 0.3s ease-in-out
+          transform: translate(-50%, -50%) scale(0)
+          z-index: 0
+
+          body[data-theme='dark'] &
+            background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
+
+        &:hover,
+        &:focus
+          border-color: ds.$hex-accent-light
+          color: ds.$hex-white
+
+          body[data-theme='dark'] &
+            border-color: ds.$hex-accent-dark
+            color: ds.$hex-black
+
+        &:hover::before,
+        &:focus::before
+          transform: translate(-50%, -50%) scale(1)
+
+        span
+          position: relative
+          z-index: 1
+
         body[data-theme='dark'] &
+          background-color: ds.$hex-dark
           color: ds.$hex-accent-dark
 
     p
@@ -93,5 +141,5 @@
             padding-right: ds.rem(12)
             font-size: ds.rem(34)
 
-        &:last-of-type
-          padding-bottom: ds.rem(12)
+      &:last-of-type
+        padding-bottom: ds.rem(12)

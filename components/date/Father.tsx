@@ -90,7 +90,7 @@ export default function Father() {
             </select>
           </div>
           <button type="button" onClick={calculateDate}>
-            계산
+            <span>계산</span>
           </button>
         </fieldset>
       </form>
