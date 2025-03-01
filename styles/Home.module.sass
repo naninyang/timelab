@@ -4,7 +4,9 @@
     flex-direction: column
     gap: ds.rem(17)
     margin: 0 auto
+    padding: ds.rem(53) 0
     max-width: ds.rem(404)
+    border-bottom: ds.rem(2) solid ds.$hex-gray-light
 
     h2
       font-size: ds.rem(24)
@@ -14,6 +16,9 @@
       display: flex
       flex-direction: column
       gap: ds.rem(12)
+
+      .group
+        display: flex
 
       select, input, label
         font-size: ds.rem(37)
@@ -45,19 +50,24 @@
 
       .calc
         padding-bottom: ds.rem(12)
+
         input
           width: ds.rem(255)
 
       button
         background-color: transparent
-        border: ds.rem(2) solid ds.$hex-accent-light
+        border: ds.rem(2) solid
         border-radius: ds.rem(54)
         padding: ds.rem(17)
         font-size: ds.rem(18)
         @include ds.fw(900)
         color: ds.$hex-accent-light
 
+        body[data-theme='dark'] &
+          color: ds.$hex-accent-dark
+
     p
+      margin: ds.rem(12) 0
       font-size: ds.rem(32)
       @include ds.fw(500)
       color: ds.$hex-dark
@@ -71,3 +81,17 @@
 
         body[data-theme='dark'] &
           color: ds.$hex-white
+
+    .diff
+      display: flex
+
+      .group
+        &:first-of-type
+          align-items: center
+
+          label:first-of-type
+            padding-right: ds.rem(12)
+            font-size: ds.rem(34)
+
+        &:last-of-type
+          padding-bottom: ds.rem(12)
