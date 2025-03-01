@@ -1,1 +1,73 @@
 .main
+  section
+    display: flex
+    flex-direction: column
+    gap: ds.rem(17)
+    margin: 0 auto
+    max-width: ds.rem(404)
+
+    h2
+      font-size: ds.rem(24)
+      @include ds.fw(900)
+
+    fieldset
+      display: flex
+      flex-direction: column
+      gap: ds.rem(12)
+
+      select, input, label
+        font-size: ds.rem(37)
+
+      select, input
+        appearance: none
+        background-color: transparent
+        border: 0
+        border-bottom: ds.rem(2) solid ds.$hex-gray-light
+        padding: 0
+        text-align: right
+
+      .ymd, .calc
+        display: flex
+        gap: ds.rem(17)
+
+      .ymd
+        display: flex
+        gap: ds.rem(17)
+
+        select
+          width: ds.rem(37)
+
+          &.year
+            width: ds.rem(82)
+
+        span
+          font-size: ds.rem(37)
+
+      .calc
+        padding-bottom: ds.rem(12)
+        input
+          width: ds.rem(255)
+
+      button
+        background-color: transparent
+        border: ds.rem(2) solid ds.$hex-accent-light
+        border-radius: ds.rem(54)
+        padding: ds.rem(17)
+        font-size: ds.rem(18)
+        @include ds.fw(900)
+        color: ds.$hex-accent-light
+
+    p
+      font-size: ds.rem(32)
+      @include ds.fw(500)
+      color: ds.$hex-dark
+
+      body[data-theme='dark'] &
+        color: ds.$hex-light
+
+      strong
+        @include ds.fw(900)
+        color: ds.$hex-black
+
+        body[data-theme='dark'] &
+          color: ds.$hex-white

@@ -12,35 +12,10 @@ $hex-gray-light: #5F6368
 $hex-gray-dark: #B0B0B0
 $hex-danger: #B3261E
 
-@mixin fw($fontfamily, $fontweight)
-  @if $fontfamily == happiness
-    font-family: var(--happiness)
-
-    @if $fontweight == 300
-      font-variation-settings: "wght" 400, "opsz" 900
-
-    @if $fontweight == 400
-      font-variation-settings: "wght" 500, "opsz" 800
-
-    @if $fontweight == 500
-      font-variation-settings: "wght" 600, "opsz" 700
-
-    @if $fontweight == 600
-      font-variation-settings: "wght" 700, "opsz" 600
-
-    @if $fontweight == 700
-      font-variation-settings: "wght" 800, "opsz" 500
-
-    @if $fontweight == 800
-      font-variation-settings: "wght" 900, "opsz" 400
-
-    @if $fontweight == 900
-      font-variation-settings: "wght" 900, "opsz" 900
-
-  @if $fontfamily == square
-    font-family: var(--square)
-    font-weight: $fontweight
-    font-variation-settings: "wght" $fontweight
+@mixin fw($fontweight)
+  font-family: var(--square)
+  font-weight: $fontweight
+  font-variation-settings: "wght" $fontweight
 
 @mixin mq($mediaquery)
   @if $mediaquery == maxExtraSmall
