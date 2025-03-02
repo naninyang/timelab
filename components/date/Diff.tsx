@@ -81,11 +81,11 @@ export default function Diff() {
 
   useEffect(() => {
     if (startDay > maxStartDays) setStartDay(maxStartDays);
-  }, [startMonth, startYear]);
+  }, [startMonth, startYear, maxStartDays, startDay]);
 
   useEffect(() => {
     if (endDay > maxEndDays) setEndDay(maxEndDays);
-  }, [endMonth, endYear]);
+  }, [endMonth, endYear, maxEndDays, endDay]);
 
   return (
     <section className={styles.section}>

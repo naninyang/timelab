@@ -25,21 +25,22 @@ export default function Father() {
   // 날짜 계산 함수
   const calculateDate = () => {
     const baseDate = new Date(year, month - 1, day);
-    let updatedDate = new Date(baseDate);
+    setCalculatedDate(() => {
+      let newDate = new Date(baseDate);
+      const value = Number(amount);
 
-    const value = Number(amount);
+      if (unit === 'days') {
+        newDate.setDate(baseDate.getDate() + (direction === 'after' ? value : -value));
+      } else if (unit === 'weeks') {
+        newDate.setDate(baseDate.getDate() + (direction === 'after' ? value * 7 : -value * 7));
+      } else if (unit === 'months') {
+        newDate.setMonth(baseDate.getMonth() + (direction === 'after' ? value : -value));
+      } else if (unit === 'years') {
+        newDate.setFullYear(baseDate.getFullYear() + (direction === 'after' ? value : -value));
+      }
 
-    if (unit === 'days') {
-      updatedDate.setDate(baseDate.getDate() + (direction === 'after' ? value : -value));
-    } else if (unit === 'weeks') {
-      updatedDate.setDate(baseDate.getDate() + (direction === 'after' ? value * 7 : -value * 7));
-    } else if (unit === 'months') {
-      updatedDate.setMonth(baseDate.getMonth() + (direction === 'after' ? value : -value));
-    } else if (unit === 'years') {
-      updatedDate.setFullYear(baseDate.getFullYear() + (direction === 'after' ? value : -value));
-    }
-
-    setCalculatedDate(`${updatedDate.getFullYear()}년 ${updatedDate.getMonth() + 1}월 ${updatedDate.getDate()}일`);
+      return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일`;
+    });
   };
 
   useEffect(() => {
