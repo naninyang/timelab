@@ -1,4 +1,7 @@
 .main
+  .container
+    max-width: ds.rem(404)
+
   section
     display: flex
     flex-direction: column
@@ -28,6 +31,9 @@
       label
         display: flex
         align-items: center
+
+      select
+        cursor: pointer
 
       select, input, label
         height: ds.rem(53)
@@ -61,10 +67,14 @@
           font-size: ds.rem(37)
 
       .calc
+        gap: ds.rem(10)
         padding-bottom: ds.rem(12)
 
+        .group
+          gap: ds.rem(10)
+
         input
-          width: ds.rem(255)
+          width: ds.rem(220)
 
       button
         transition: background 0.3s ease-in-out, transform 0.2s
@@ -116,9 +126,12 @@
 
     p
       margin: ds.rem(12) 0
-      font-size: ds.rem(32)
+      font-size: ds.rem(30)
       @include ds.fw(500)
       color: ds.$hex-dark
+
+      &:nth-of-type(3), &:nth-of-type(4)
+        font-size: ds.rem(20)
 
       body[data-theme='dark'] &
         color: ds.$hex-light

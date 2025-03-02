@@ -10,7 +10,8 @@ export default function Father() {
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [day, setDay] = useState(today.getDate());
-  const [daysToAdd, setDaysToAdd] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [unit, setUnit] = useState('days'); // "days", "weeks", "months", "years"
   const [direction, setDirection] = useState('after');
   const [calculatedDate, setCalculatedDate] = useState('');
 
@@ -21,12 +22,22 @@ export default function Father() {
   const maxDays = getMaxDays(year, month);
   const days = Array.from({ length: maxDays }, (_, i) => i + 1);
 
+  // 날짜 계산 함수
   const calculateDate = () => {
     const baseDate = new Date(year, month - 1, day);
-    const updatedDate =
-      direction === 'after'
-        ? new Date(baseDate.setDate(baseDate.getDate() + Number(daysToAdd)))
-        : new Date(baseDate.setDate(baseDate.getDate() - Number(daysToAdd)));
+    let updatedDate = new Date(baseDate);
+
+    const value = Number(amount);
+
+    if (unit === 'days') {
+      updatedDate.setDate(baseDate.getDate() + (direction === 'after' ? value : -value));
+    } else if (unit === 'weeks') {
+      updatedDate.setDate(baseDate.getDate() + (direction === 'after' ? value * 7 : -value * 7));
+    } else if (unit === 'months') {
+      updatedDate.setMonth(baseDate.getMonth() + (direction === 'after' ? value : -value));
+    } else if (unit === 'years') {
+      updatedDate.setFullYear(baseDate.getFullYear() + (direction === 'after' ? value : -value));
+    }
 
     setCalculatedDate(`${updatedDate.getFullYear()}년 ${updatedDate.getMonth() + 1}월 ${updatedDate.getDate()}일`);
   };
@@ -81,8 +92,13 @@ export default function Father() {
           </div>
           <div className={styles.calc}>
             <div className={styles.group}>
-              <input type="number" value={daysToAdd} onChange={(e) => setDaysToAdd(Number(e.target.value))} />
-              <label htmlFor="">일</label>
+              <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
+              <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+                <option value="days">일</option>
+                <option value="weeks">주</option>
+                <option value="months">개월</option>
+                <option value="years">년</option>
+              </select>
             </div>
             <select value={direction} onChange={(e) => setDirection(e.target.value)}>
               <option value="after">이후</option>

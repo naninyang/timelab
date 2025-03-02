@@ -33,18 +33,47 @@ export default function Diff() {
     const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
     const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-    let resultText = `<p><strong>${dayDiff}일</strong> 차이입니다.</p>`;
+    let resultText = `<p><strong>${dayDiff}일</strong> 입니다.</p>`;
 
     if (dayDiff >= 365) {
       const years = Math.floor(dayDiff / 365);
       const remainingDays = dayDiff % 365;
       const months = Math.floor(remainingDays / 30);
       const days = remainingDays % 30;
-      resultText += `<p><strong>${years}년 ${months}개월 ${days}일</strong> 입니다.</p>`;
+      if (months > 0 && days > 0) {
+        resultText += `<p><strong>${years}년 ${months}개월 ${days}일</strong> 입니다.</p>`;
+      } else if (months > 0 && days < 1) {
+        resultText += `<p><strong>${years}년 ${months}개월</strong> 입니다.</p>`;
+      } else if (months < 1 && days > 0) {
+        resultText += `<p><strong>${years}년 ${days}일</strong> 입니다.</p>`;
+      }
     } else if (dayDiff >= 30) {
       const months = Math.floor(dayDiff / 30);
       const days = dayDiff % 30;
-      resultText += `<p><strong>${months}개월 ${days}일</strong> 입니다.</p>`;
+      if (days > 0) {
+        resultText += `<p><strong>${months}개월 ${days}일</strong> 입니다.</p>`;
+      } else {
+        resultText += `<p><strong>${months}개월</strong> 입니다.</p>`;
+      }
+    }
+
+    const totalMonths = (endYear - startYear) * 12 + (endMonth - startMonth);
+    const totalWeeks = Math.floor(dayDiff / 7);
+    const remainingDays = dayDiff % 7;
+
+    if (totalMonths > 0) {
+      let monthText = `<p>이는 총 <strong>${totalMonths}개월`;
+      if (totalWeeks > 0) monthText += ` ${totalWeeks}주`;
+      if (remainingDays > 0) monthText += ` ${remainingDays}일`;
+      monthText += `</strong>에 해당합니다.</p>`;
+      resultText += monthText;
+    }
+
+    if (totalWeeks > 0) {
+      let weekText = `<p>이는 총 <strong>${totalWeeks}주`;
+      if (remainingDays > 0) weekText += ` ${remainingDays}일`;
+      weekText += `</strong>에 해당합니다.</p>`;
+      resultText += weekText;
     }
 
     setDifferenceText(resultText);
@@ -130,7 +159,7 @@ export default function Diff() {
               <label htmlFor="diff-end-day">일</label>
             </div>
           </div>
-          <button type="button" onClick={calculateDifference} className="bg-blue-500 text-white px-3 py-1 rounded">
+          <button type="button" onClick={calculateDifference}>
             <span>계산</span>
           </button>
         </fieldset>
