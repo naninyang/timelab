@@ -22,11 +22,10 @@ export default function Father() {
   const maxDays = getMaxDays(year, month);
   const days = Array.from({ length: maxDays }, (_, i) => i + 1);
 
-  // 날짜 계산 함수
   const calculateDate = () => {
     const baseDate = new Date(year, month - 1, day);
     setCalculatedDate(() => {
-      let newDate = new Date(baseDate);
+      const newDate = new Date(baseDate); // let → const 변경
       const value = Number(amount);
 
       if (unit === 'days') {
@@ -45,7 +44,7 @@ export default function Father() {
 
   useEffect(() => {
     if (day > maxDays) setDay(maxDays);
-  }, [month, year]);
+  }, [month, year, day, maxDays]);
 
   return (
     <section className={styles.section}>
