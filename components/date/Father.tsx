@@ -11,7 +11,7 @@ export default function Father() {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [day, setDay] = useState(today.getDate());
   const [amount, setAmount] = useState(0);
-  const [unit, setUnit] = useState('days'); // "days", "weeks", "months", "years"
+  const [unit, setUnit] = useState('days');
   const [direction, setDirection] = useState('after');
   const [calculatedDate, setCalculatedDate] = useState('');
 
@@ -25,7 +25,7 @@ export default function Father() {
   const calculateDate = () => {
     const baseDate = new Date(year, month - 1, day);
     setCalculatedDate(() => {
-      const newDate = new Date(baseDate); // let → const 변경
+      const newDate = new Date(baseDate);
       const value = Number(amount);
 
       if (unit === 'days') {
