@@ -1,4 +1,5 @@
 import Seo from '@/components/Seo';
+import Dday from '@/components/date/Dday';
 import Diff from '@/components/date/Diff';
 import Father from '@/components/date/Father';
 import styles from '@/styles/Home.module.sass';
@@ -11,6 +12,7 @@ export default function Home() {
       <div className={`container ${styles.container}`}>
         <Father />
         <Diff />
+        <Dday />
       </div>
     </main>
   );

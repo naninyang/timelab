@@ -76,7 +76,31 @@
         input
           width: ds.rem(220)
 
-      button
+      .dday
+        & + .diff
+          padding-left: ds.rem(102)
+
+      .switch
+        display: flex
+        justify-content: center
+        align-items: center
+
+        button
+          background-color: transparent
+          width: ds.rem(35)
+          height: ds.rem(35)
+
+          svg
+            width: 100%
+            height: 100%
+
+            path
+              fill: ds.$hex-danger
+
+          span
+            @include ds.screen-reader-only
+
+      button:not(.switcher)
         transition: background 0.3s ease-in-out, transform 0.2s
         position: relative
         overflow: hidden
@@ -123,6 +147,10 @@
         body[data-theme='dark'] &
           background-color: ds.$hex-dark
           color: ds.$hex-accent-dark
+
+    .dd-result
+      p
+        font-size: ds.rem(24)
 
     p
       margin: ds.rem(12) 0

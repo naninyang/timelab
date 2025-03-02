@@ -112,9 +112,11 @@ export default function Father() {
       </form>
 
       {calculatedDate && (
-        <p>
-          <strong>{calculatedDate}</strong> 입니다.
-        </p>
+        <div className={styles.result}>
+          <p>
+            <strong>{calculatedDate}</strong> 입니다.
+          </p>
+        </div>
       )}
     </section>
   );

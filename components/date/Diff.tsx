@@ -165,7 +165,7 @@ export default function Diff() {
         </fieldset>
       </form>
 
-      <div className="mt-4 text-lg font-bold" dangerouslySetInnerHTML={{ __html: differenceText }} />
+      <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />
     </section>
   );
 }
