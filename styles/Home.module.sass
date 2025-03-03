@@ -185,6 +185,8 @@
 
           @include ds.mq(maxExtraSmall)
             margin-top: ds.vw(-24, 384)
+            padding-left: ds.vw(108, 384)
+            padding-bottom: ds.vw(24, 384)
 
           @include ds.mq(minLarge)
             margin-top: 0
@@ -222,6 +224,10 @@
             width: ds.rem(37)
             height: ds.rem(37)
 
+          @include ds.mq(maxExtraSmall)
+            width: ds.vw(37, 384)
+            height: ds.vw(37, 384)
+
           svg
             width: ds.rem(35)
             height: ds.rem(35)
@@ -229,6 +235,10 @@
             @include ds.mq(maxMedium)
               width: ds.rem(23)
               height: ds.rem(23)
+
+            @include ds.mq(maxExtraSmall)
+              width: ds.vw(23, 384)
+              height: ds.vw(23, 384)
 
             path
               fill: ds.$hex-danger
@@ -250,6 +260,11 @@
         font-size: ds.rem(18)
         @include ds.fw(900)
         color: ds.$hex-accent-light
+
+        @include ds.mq(maxExtraSmall)
+          border-radius: ds.vw(54, 384)
+          padding: ds.vw(17, 384)
+          font-size: ds.vw(18, 384)
 
         &::before
           content: ''
@@ -291,14 +306,24 @@
       p
         font-size: ds.rem(24)
 
+        @include ds.mq(maxExtraSmall)
+          font-size: ds.vw(24, 384)
+
     p
       margin: ds.rem(12) 0
       font-size: ds.rem(30)
       @include ds.fw(500)
       color: ds.$hex-dark
 
+      @include ds.mq(maxExtraSmall)
+        margin: ds.vw(12, 384)
+        font-size: ds.vw(27, 384)
+
       &:nth-of-type(3), &:nth-of-type(4)
         font-size: ds.rem(20)
+
+        @include ds.mq(maxExtraSmall)
+          font-size: ds.vw(18, 384)
 
       body[data-theme='dark'] &
         color: ds.$hex-light
@@ -321,5 +346,12 @@
             padding-right: ds.rem(12)
             font-size: ds.rem(34)
 
+            @include ds.mq(maxExtraSmall)
+              padding-right: ds.vw(12, 384)
+              font-size: ds.vw(34, 384)
+
       &:last-of-type
         padding-bottom: ds.rem(12)
+
+        @include ds.mq(maxExtraSmall)
+          padding-bottom: ds.vw(12, 384)
