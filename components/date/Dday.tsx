@@ -3,7 +3,13 @@ import { format, differenceInDays, isToday } from 'date-fns';
 import { Switch } from '../Svgs';
 import styles from '@/styles/Home.module.sass';
 
-const getCurrentDate = () => {
+interface DateState {
+  year: number;
+  month: number;
+  day: number;
+}
+
+const getCurrentDate = (): DateState => {
   const today = new Date();
   return {
     year: today.getFullYear(),
@@ -17,8 +23,8 @@ const generateOptions = (start: number, end: number) => Array.from({ length: end
 export default function Dday() {
   const today = getCurrentDate();
 
-  const [baseDate, setBaseDate] = useState(today);
-  const [dDay, setDDay] = useState(today);
+  const [baseDate, setBaseDate] = useState<DateState>(today);
+  const [dDay, setDDay] = useState<DateState>(today);
   const [isTodaySelected, setIsTodaySelected] = useState(true);
   const [result, setResult] = useState('');
 
@@ -28,8 +34,15 @@ export default function Dday() {
     }
   }, [isTodaySelected, today]);
 
-  const handleChange = (setter: (value: any) => void, field: 'year' | 'month' | 'day', value: number) => {
-    setter((prev: any) => ({ ...prev, [field]: value }));
+  const handleChange = (
+    setter: React.Dispatch<React.SetStateAction<DateState>>,
+    field: keyof DateState,
+    value: number,
+  ) => {
+    setter((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   };
 
   const toggleDates = () => {
