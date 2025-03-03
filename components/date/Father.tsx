@@ -10,7 +10,7 @@ export default function Father() {
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [day, setDay] = useState(today.getDate());
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [unit, setUnit] = useState('days');
   const [direction, setDirection] = useState('after');
   const [calculatedDate, setCalculatedDate] = useState('');
@@ -49,9 +49,8 @@ export default function Father() {
   return (
     <section className={styles.section}>
       <h2>이전/이후 계산</h2>
-      <form>
-        <fieldset>
-          <legend>이후 날짜 혹은 이전 날짜 세팅 폼</legend>
+      <div className={styles.form}>
+        <div className={styles.fieldset}>
           <div className={styles.ymd}>
             <div className={styles.group}>
               <select
@@ -108,8 +107,8 @@ export default function Father() {
           <button type="button" onClick={calculateDate}>
             <span>계산</span>
           </button>
-        </fieldset>
-      </form>
+        </div>
+      </div>
 
       {calculatedDate && (
         <div className={styles.result}>

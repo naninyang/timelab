@@ -90,9 +90,8 @@ export default function Diff() {
   return (
     <section className={styles.section}>
       <h2>날짜 차이 계산</h2>
-      <form>
-        <fieldset>
-          <legend>날짜 차이 세팅 폼</legend>
+      <div className={styles.form}>
+        <div className={styles.fieldset}>
           <div className={styles.diff}>
             <div className={styles.group}>
               <label htmlFor="diff-start-year">시작일</label>
@@ -162,8 +161,8 @@ export default function Diff() {
           <button type="button" onClick={calculateDifference}>
             <span>계산</span>
           </button>
-        </fieldset>
-      </form>
+        </div>
+      </div>
 
       <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />
     </section>

@@ -73,80 +73,16 @@ export default function Dday() {
   return (
     <section className={`${styles.section} ${styles['section-dday']}`}>
       <h2>디데이 계산</h2>
-      <form>
-        <fieldset>
-          <legend>디데이 세팅 폼</legend>
-          <div className={styles.diff}>
-            <div className={styles.group}>
-              <label htmlFor="dd-start-year">기준일</label>
-              <select
-                id="dd-start-year"
-                value={baseDate.year}
-                onChange={(e) => handleChange(setBaseDate, 'year', Number(e.target.value))}
-              >
-                {generateOptions(2000, 2100).map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="dd-start-year">년</label>
-            </div>
-            <div className={styles.group}>
-              <select
-                id="dd-start-month"
-                value={baseDate.month}
-                onChange={(e) => handleChange(setBaseDate, 'month', Number(e.target.value))}
-              >
-                {generateOptions(1, 12).map((month) => (
-                  <option key={month} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="dd-start-month">월</label>
-            </div>
-            <div className={styles.group}>
-              <select
-                id="dd-start-day"
-                value={baseDate.day}
-                onChange={(e) => handleChange(setBaseDate, 'day', Number(e.target.value))}
-              >
-                {generateOptions(1, 31).map((day) => (
-                  <option key={day} value={day}>
-                    {day}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="dd-start-day">일</label>
-            </div>
-          </div>
-          <div className={styles.switch}>
-            <button type="button" onClick={toggleDates} className={styles.switcher}>
-              <Switch />
-              <span>날짜 교체</span>
-            </button>
-          </div>
-          <div className={styles.dday}>
-            <div className={styles.group}>
-              <label htmlFor="dd-end">디데이</label>
-              <select
-                id="dd-end"
-                value={isTodaySelected ? 'today' : 'custom'}
-                onChange={(e) => setIsTodaySelected(e.target.value === 'today')}
-              >
-                <option value="today">오늘</option>
-                <option value="custom">날짜 지정</option>
-              </select>
-            </div>
-          </div>
-          {!isTodaySelected && (
+      <div className={styles.form}>
+        <div className={styles.fieldset}>
+          <div className={styles.wrapper}>
             <div className={styles.diff}>
               <div className={styles.group}>
+                <label htmlFor="dd-start-year">디데이</label>
                 <select
-                  id="dd-end-year"
-                  value={dDay.year}
-                  onChange={(e) => handleChange(setDDay, 'year', Number(e.target.value))}
+                  id="dd-start-year"
+                  value={baseDate.year}
+                  onChange={(e) => handleChange(setBaseDate, 'year', Number(e.target.value))}
                 >
                   {generateOptions(2000, 2100).map((year) => (
                     <option key={year} value={year}>
@@ -154,13 +90,13 @@ export default function Dday() {
                     </option>
                   ))}
                 </select>
-                <label htmlFor="dd-end-year">년</label>
+                <label htmlFor="dd-start-year">년</label>
               </div>
               <div className={styles.group}>
                 <select
-                  id="dd-end-month"
-                  value={dDay.month}
-                  onChange={(e) => handleChange(setDDay, 'month', Number(e.target.value))}
+                  id="dd-start-month"
+                  value={baseDate.month}
+                  onChange={(e) => handleChange(setBaseDate, 'month', Number(e.target.value))}
                 >
                   {generateOptions(1, 12).map((month) => (
                     <option key={month} value={month}>
@@ -168,13 +104,13 @@ export default function Dday() {
                     </option>
                   ))}
                 </select>
-                <label htmlFor="dd-end-month">월</label>
+                <label htmlFor="dd-start-month">월</label>
               </div>
               <div className={styles.group}>
                 <select
-                  id="dd-end-day"
-                  value={dDay.day}
-                  onChange={(e) => handleChange(setDDay, 'day', Number(e.target.value))}
+                  id="dd-start-day"
+                  value={baseDate.day}
+                  onChange={(e) => handleChange(setBaseDate, 'day', Number(e.target.value))}
                 >
                   {generateOptions(1, 31).map((day) => (
                     <option key={day} value={day}>
@@ -182,15 +118,82 @@ export default function Dday() {
                     </option>
                   ))}
                 </select>
-                <label htmlFor="dd-end-day">일</label>
+                <label htmlFor="dd-start-day">일</label>
               </div>
             </div>
-          )}
+            <div className={styles.switch}>
+              <button type="button" onClick={toggleDates} className={styles.switcher}>
+                <Switch />
+                <span>날짜 교체</span>
+              </button>
+            </div>
+            <div className={styles.diff}>
+              <div className={styles.dday}>
+                <div className={styles.group}>
+                  <label htmlFor="dd-end">기준일</label>
+                  <select
+                    id="dd-end"
+                    value={isTodaySelected ? 'today' : 'custom'}
+                    onChange={(e) => setIsTodaySelected(e.target.value === 'today')}
+                  >
+                    <option value="today">오늘</option>
+                    <option value="custom">날짜 지정</option>
+                  </select>
+                </div>
+              </div>
+              {!isTodaySelected && (
+                <div className={styles.diff}>
+                  <div className={styles.group}>
+                    <select
+                      id="dd-end-year"
+                      value={dDay.year}
+                      onChange={(e) => handleChange(setDDay, 'year', Number(e.target.value))}
+                    >
+                      {generateOptions(2000, 2100).map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="dd-end-year">년</label>
+                  </div>
+                  <div className={styles.group}>
+                    <select
+                      id="dd-end-month"
+                      value={dDay.month}
+                      onChange={(e) => handleChange(setDDay, 'month', Number(e.target.value))}
+                    >
+                      {generateOptions(1, 12).map((month) => (
+                        <option key={month} value={month}>
+                          {month}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="dd-end-month">월</label>
+                  </div>
+                  <div className={styles.group}>
+                    <select
+                      id="dd-end-day"
+                      value={dDay.day}
+                      onChange={(e) => handleChange(setDDay, 'day', Number(e.target.value))}
+                    >
+                      {generateOptions(1, 31).map((day) => (
+                        <option key={day} value={day}>
+                          {day}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="dd-end-day">일</label>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
           <button type="button" onClick={handleCalculate}>
             <span>계산</span>
           </button>
-        </fieldset>
-      </form>
+        </div>
+      </div>
 
       {result && (
         <div className={`${styles.result} ${styles['dd-result']}`}>
