@@ -26,7 +26,7 @@ export default function Dday() {
     if (isTodaySelected) {
       setDDay(today);
     }
-  }, [isTodaySelected]);
+  }, [isTodaySelected, today]);
 
   const handleChange = (setter: (value: any) => void, field: 'year' | 'month' | 'day', value: number) => {
     setter((prev: any) => ({ ...prev, [field]: value }));
