@@ -1,6 +1,7 @@
 import Seo from '@/components/Seo';
 import Dday from '@/components/date/Dday';
 import Diff from '@/components/date/Diff';
+import EventPercentage from '@/components/date/EventPercentage';
 import Father from '@/components/date/Father';
 import styles from '@/styles/Home.module.sass';
 
@@ -13,6 +14,7 @@ export default function Home() {
         <Father />
         <Diff />
         <Dday />
+        <EventPercentage />
       </div>
     </main>
   );

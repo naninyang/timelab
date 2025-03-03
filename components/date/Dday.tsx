@@ -32,7 +32,7 @@ export default function Dday() {
     if (isTodaySelected) {
       setDDay(today);
     }
-  }, [isTodaySelected, today]);
+  }, [isTodaySelected, setDDay]);
 
   const handleChange = (
     setter: React.Dispatch<React.SetStateAction<DateState>>,
