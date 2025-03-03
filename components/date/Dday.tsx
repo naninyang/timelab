@@ -71,10 +71,8 @@ export default function Dday() {
   };
 
   return (
-    <section className={styles.section}>
-      <div className={styles.headline}>
-        <h2>디데이 계산</h2>
-      </div>
+    <section className={`${styles.section} ${styles['section-dday']}`}>
+      <h2>디데이 계산</h2>
       <form>
         <fieldset>
           <legend>디데이 세팅 폼</legend>

@@ -2,7 +2,7 @@
   .container
     max-width: ds.rem(404)
 
-  section
+  section.section
     display: flex
     flex-direction: column
     gap: ds.rem(17)
@@ -18,6 +18,19 @@
     h2
       font-size: ds.rem(24)
       @include ds.fw(900)
+
+    &.section-dday
+      fieldset
+        gap: 0
+
+        .diff
+          padding-bottom: ds.rem(12)
+
+        .dday
+          padding-bottom: ds.rem(24)
+
+          label
+            padding-right: ds.rem(6)
 
     fieldset
       display: flex
@@ -78,7 +91,12 @@
 
       .dday
         & + .diff
-          padding-left: ds.rem(102)
+          margin-top: ds.rem(-24)
+          padding-left: ds.rem(108)
+          padding-bottom: ds.rem(24)
+
+          label
+            padding-right: 0
 
       .switch
         display: flex
