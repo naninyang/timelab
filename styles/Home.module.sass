@@ -508,6 +508,12 @@
           background-color: ds.$hex-dark
           color: ds.$hex-accent-dark
 
+      .notice
+        p
+          margin: ds.rem(3)
+          font-size: ds.rem(16)
+          color: ds.$hex-danger
+
     .dd-result
       p
         font-size: ds.rem(24)
@@ -515,31 +521,32 @@
         @include ds.mq(maxExtraSmall)
           font-size: ds.vw(24, 384)
 
-    p
-      margin: ds.rem(12) 0
-      font-size: ds.rem(30)
-      @include ds.fw(500)
-      color: ds.$hex-dark
-
-      @include ds.mq(maxExtraSmall)
-        margin: ds.vw(12, 384) 0
-        font-size: ds.vw(27, 384)
-
-      &:nth-of-type(3), &:nth-of-type(4)
-        font-size: ds.rem(20)
+    .result
+      p
+        margin: ds.rem(12) 0
+        font-size: ds.rem(30)
+        @include ds.fw(500)
+        color: ds.$hex-dark
 
         @include ds.mq(maxExtraSmall)
-          font-size: ds.vw(18, 384)
+          margin: ds.vw(12, 384) 0
+          font-size: ds.vw(27, 384)
 
-      body[data-theme='dark'] &
-        color: ds.$hex-light
+        &:nth-last-of-type(1), &:nth-last-of-type(2)
+          font-size: ds.rem(20)
 
-      strong
-        @include ds.fw(900)
-        color: ds.$hex-black
+          @include ds.mq(maxExtraSmall)
+            font-size: ds.vw(18, 384)
 
         body[data-theme='dark'] &
-          color: ds.$hex-white
+          color: ds.$hex-light
+
+        strong
+          @include ds.fw(900)
+          color: ds.$hex-black
+
+          body[data-theme='dark'] &
+            color: ds.$hex-white
 
     .diff
       display: flex
