@@ -61,19 +61,18 @@ export default function Diff() {
     const totalWeeks = Math.floor(dayDiff / 7);
     const remainingDays = dayDiff % 7;
 
-    if (totalMonths > 0) {
-      let monthText = `<p>이는 총 <strong>${totalMonths}개월`;
-      if (totalWeeks > 0) monthText += ` ${totalWeeks}주`;
-      if (remainingDays > 0) monthText += ` ${remainingDays}일`;
-      monthText += `</strong>에 해당합니다.</p>`;
-      resultText += monthText;
-    }
+    if (dayDiff >= 30) {
+      const months = Math.floor(dayDiff / 30);
+      const remainingDaysAfterMonths = dayDiff % 30;
+      const weeks = Math.floor(remainingDaysAfterMonths / 7);
+      const days = remainingDaysAfterMonths % 7;
 
-    if (totalWeeks > 0) {
-      let weekText = `<p>이는 총 <strong>${totalWeeks}주`;
-      if (remainingDays > 0) weekText += ` ${remainingDays}일`;
-      weekText += `</strong>에 해당합니다.</p>`;
-      resultText += weekText;
+      let monthText = `<div><p>이는 총 <strong>${months}개월`;
+      if (weeks > 0) monthText += ` ${weeks}주`;
+      if (days > 0) monthText += ` ${days}일`;
+      monthText += `</strong>에 해당합니다.</p></div>`;
+
+      resultText += monthText;
     }
 
     setDifferenceText(resultText);
