@@ -197,7 +197,7 @@ export default function Dday() {
 
       {result && (
         <div className={`${styles.result} ${styles['dd-result']}`}>
-          <p dangerouslySetInnerHTML={{ __html: result }}></p>
+          <p dangerouslySetInnerHTML={{ __html: result }} />
         </div>
       )}
     </section>

@@ -29,13 +29,13 @@
       border-top: ds.rem(2) solid ds.$hex-gray-light
       gap: 0
 
-      &:nth-of-type(1)
+      &:nth-of-type(1), &:nth-of-type(5)
         margin-right: ds.rem(46)
 
-      &:nth-of-type(2)
+      &:nth-of-type(2), &:nth-of-type(6)
         margin-left: ds.rem(46)
 
-      &:nth-of-type(1), &:nth-of-type(2)
+      &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(6)
         border-top: 0
 
     &:last-of-type
@@ -48,6 +48,20 @@
 
       @include ds.mq(maxExtraSmall)
         font-size: ds.vw(24, 384)
+
+      svg
+        width: ds.rem(248)
+        height: ds.rem(23)
+
+        @include ds.mq(maxExtraSmall)
+          width: ds.vw(248, 384)
+          height: ds.vw(23, 384)
+
+        path
+          fill: ds.$hex-dark
+
+          body[data-theme='dark'] &
+            fill: ds.$hex-white
 
     &.section-dday
       @include ds.mq(minLarge)
@@ -82,6 +96,7 @@
 
       @include ds.mq(minLarge)
         margin: 0
+        border-bottom: ds.rem(2) solid ds.$hex-gray-light
         max-width: none
         width: 100%
 
@@ -164,6 +179,55 @@
           p
             font-size: ds.rem(24)
             @include ds.fw(900)
+
+    &.section-event-anniversary
+      display: flex
+      flex-direction: column
+
+      @include ds.mq(minLarge)
+        padding-bottom: 0
+
+      & + .section
+        @include ds.mq(minLarge)
+          padding-bottom: 0
+          width: ds.rem(368)
+
+        @include ds.mq(maxMedium)
+          width: 100%
+
+      .event-name
+        display: flex
+        justify-content: space-between
+        gap: ds.rem(12)
+        width: 100%
+
+        label
+          width: ds.rem(100)
+
+        .eventName
+          @include ds.col
+
+        input
+          width: 100%
+          text-align: left
+
+      .diff
+        .group
+          label
+            font-size: ds.rem(37)!important
+
+      .result
+        p
+          display: flex
+          flex-direction: column
+          gap: ds.rem(3)
+          font-size: ds.rem(35)
+          @include ds.fw(700)
+
+          em
+            font-style: normal
+            font-size: ds.rem(16)
+            color: ds.$hex-gray-dark
 
     .fieldset
       display: flex
@@ -459,6 +523,83 @@
 
         @include ds.mq(maxExtraSmall)
           padding-bottom: ds.vw(12, 384)
+
+    .gffd
+      display: flex
+      flex-direction: column
+      flex-grow: 1
+      justify-content: space-between
+      align-items: center
+
+      svg
+        width: ds.rem(214)
+        height: ds.rem(214)
+
+        @include ds.mq(maxExtraSmall)
+          width: ds.vw(214, 384)
+          height: ds.vw(214, 384)
+
+        path
+          fill: ds.$hex-dark
+
+          body[data-theme='dark'] &
+            fill: ds.$hex-white
+
+      a
+        transition: background 0.3s ease-in-out, transform 0.2s
+        display: flex
+        justify-content: center
+        position: relative
+        overflow: hidden
+        background-color: ds.$hex-white
+        border: ds.rem(2) solid
+        border-radius: ds.rem(54)
+        padding: ds.rem(17)
+        width: 100%
+        font-size: ds.rem(18)
+        @include ds.fw(900)
+        color: ds.$hex-accent-light
+
+        @include ds.mq(maxExtraSmall)
+          border-radius: ds.vw(54, 384)
+          padding: ds.vw(17, 384)
+          font-size: ds.vw(18, 384)
+
+        &::before
+          content: ''
+          position: absolute
+          top: 50%
+          left: 50%
+          width: 300%
+          height: 300%
+          background: radial-gradient(circle, ds.$hex-accent-light 0%, ds.$hex-white 100%)
+          transition: transform 0.3s ease-in-out
+          transform: translate(-50%, -50%) scale(0)
+          z-index: 0
+
+          body[data-theme='dark'] &
+            background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
+
+        &:hover,
+        &:focus
+          border-color: ds.$hex-accent-light
+          color: ds.$hex-white
+
+          body[data-theme='dark'] &
+            border-color: ds.$hex-accent-dark
+            color: ds.$hex-black
+
+        &:hover::before,
+        &:focus::before
+          transform: translate(-50%, -50%) scale(1)
+
+        span
+          position: relative
+          z-index: 1
+
+        body[data-theme='dark'] &
+          background-color: ds.$hex-dark
+          color: ds.$hex-accent-dark
 
 @keyframes progress
   0%

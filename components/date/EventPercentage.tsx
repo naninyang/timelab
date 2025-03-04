@@ -84,9 +84,10 @@ export default function EventPercentage() {
       <div className={styles.form}>
         <div className={styles.fieldset}>
           <div className={`${styles.group} ${styles['event-name']}`}>
-            <label className="block">이벤트</label>
+            <label htmlFor="event-name">이벤트</label>
             <div className={styles.eventName}>
               <input
+                id="event-name"
                 type="text"
                 placeholder="이벤트 이름 입력"
                 value={eventName}
