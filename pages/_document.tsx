@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-// import { GA_TRACKING_ID } from '@/lib/gtag';
+import { GA_TRACKING_ID } from '@/lib/gtag';
 
 export default function Document() {
   return (
@@ -17,12 +17,12 @@ export default function Document() {
         <link href="/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
         <link href="/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
         <link href="/favicon/favicon.ico" rel="shortcut icon" />
-        {/* <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}', { page_path: window.location.pathname });`,
           }}
-        /> */}
+        />
       </Head>
       <body>
         <Main />
