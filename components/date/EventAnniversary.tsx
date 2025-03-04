@@ -56,7 +56,6 @@ export default function EventAnniversary() {
         const years = Math.floor(absDays / 365);
         const months = Math.floor((absDays % 365) / 30);
         const weeks = Math.floor(((absDays % 365) % 30) / 7);
-        const days = ((absDays % 365) % 30) % 7;
 
         if (years > 0) {
           return `${eventName} ${years}년 전`;
