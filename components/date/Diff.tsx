@@ -57,10 +57,6 @@ export default function Diff() {
       }
     }
 
-    const totalMonths = (endYear - startYear) * 12 + (endMonth - startMonth);
-    const totalWeeks = Math.floor(dayDiff / 7);
-    const remainingDays = dayDiff % 7;
-
     if (dayDiff >= 30) {
       const months = Math.floor(dayDiff / 30);
       const remainingDaysAfterMonths = dayDiff % 30;
