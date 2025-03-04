@@ -34,6 +34,21 @@
     .notice
       text-align: center
 
+      p:last-of-type
+        padding-top: ds.rem(23)
+
+        a
+          position: relative
+          top: ds.rem(-1)
+          @include ds.fw(700)
+          color: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            color: ds.$hex-accent-dark
+
+          &:hover, &:focus
+            text-decoration: underline
+
     .staff
       padding-top: ds.rem(53)
 

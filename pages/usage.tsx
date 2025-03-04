@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { useTheme } from '@/components/context/ThemeContext';
-import styles from '@/styles/Usage.module.sass';
 import { UsageLogoDark, UsageLogoLight } from '@/components/Svgs';
+import Anchor from '@/components/Anchor';
+import styles from '@/styles/Usage.module.sass';
 
 export default function Usage() {
   const { isDarkMode } = useTheme();
@@ -19,6 +20,10 @@ export default function Usage() {
         <div className={styles.notice}>
           <p>본 웹서비스는 쿠키를 수집하지 않습니다.</p>
           <p>비즈니스 이메일: 1157iamari@gmail.com</p>
+          <p>
+            타임랩은 게임 유튜버 <Anchor href="https://www.youtube.com/@GodFFreeDom_sadman">갓뿌리덤</Anchor>과 함께
+            합니다.
+          </p>
         </div>
         <div className={styles.staff}>
           <dl>
