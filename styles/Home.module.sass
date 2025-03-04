@@ -21,6 +21,7 @@
 
     @include ds.mq(maxExtraSmall)
       gap: ds.vw(17, 384)
+      margin: 0
       padding: ds.vw(53, 384) 0
       max-width: none
 
@@ -103,11 +104,16 @@
       .event-name
         display: flex
         justify-content: space-between
-        gap: ds.rem(12)
         width: 100%
+
+        @include ds.mq(minSmall)
+          gap: ds.rem(12)
 
         label
           width: ds.rem(100)
+
+          @include ds.mq(maxExtraSmall)
+            width: ds.vw(100, 384)
 
         .eventName
           @include ds.col
@@ -134,10 +140,17 @@
       .diff
         .group
           label
-            font-size: ds.rem(37)!important
+            @include ds.mq(minSmall)
+              font-size: ds.rem(37)!important
+
+            @include ds.mq(maxExtraSmall)
+              font-size: ds.vw(32, 384)!important
 
         &:last-of-type
           padding-bottom: ds.rem(24)
+
+          @include ds.mq(maxExtraSmall)
+            padding-bottom: ds.vw(24, 384)
 
       .result-container
         display: flex
@@ -147,10 +160,16 @@
           p
             font-size: ds.rem(20)
 
+            @include ds.mq(maxExtraSmall)
+              font-size: ds.vw(20, 384)
+
             em
               font-style: normal
               font-size: ds.rem(14)
               color: ds.$hex-gray-dark
+
+              @include ds.mq(maxExtraSmall)
+                font-size: ds.vw(14, 384)
 
         .progress
           .progress-bar
@@ -198,11 +217,17 @@
       .event-name
         display: flex
         justify-content: space-between
-        gap: ds.rem(12)
         width: 100%
+
+        @include ds.mq(minSmall)
+          gap: ds.rem(12)
 
         label
           width: ds.rem(100)
+
+          @include ds.mq(maxExtraSmall)
+            width: ds.vw(100, 384)
+            font-size: ds.vw(32, 384)!important
 
         .eventName
           @include ds.col
@@ -214,7 +239,11 @@
       .diff
         .group
           label
-            font-size: ds.rem(37)!important
+            @include ds.mq(minSmall)
+              font-size: ds.rem(37)!important
+
+            @include ds.mq(maxExtraSmall)
+              font-size: ds.vw(32, 384)!important
 
       .result
         p
