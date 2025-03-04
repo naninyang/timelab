@@ -302,6 +302,15 @@
         padding: 0
         text-align: right
 
+        &:focus, &:focus-visible
+          outline: 0
+          border-bottom: ds.rem(5) solid ds.$hex-accent-light
+          color: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            bottom-bottom-color: ds.$hex-accent-dark
+            color: ds.$hex-accent-dark
+
         @include ds.mq(maxExtraSmall)
           height: ds.vw(53, 384)
 
