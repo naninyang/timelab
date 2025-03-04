@@ -10,9 +10,9 @@ export default function Footer() {
           <li>
             <Anchor href="/usage">이용안내</Anchor>
           </li>
-          <li>
+          {/* <li>
             <Anchor href="/open-sources">오픈소스</Anchor>
-          </li>
+          </li> */}
         </ul>
         <p className={styles.copyright} lang="en">
           &copy; Copyrights

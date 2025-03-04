@@ -1,25 +1,10 @@
-import { useEffect, useState } from 'react';
 import Anchor from './Anchor';
+import { useTheme } from './context/ThemeContext';
 import { LogoDark, LogoLight, ModeDark, ModeLight } from './Svgs';
 import styles from '@/styles/Header.module.sass';
 
 export default function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const t = localStorage.getItem('t');
-    if (t) {
-      document.body.setAttribute('data-theme', t);
-      setIsDarkMode(t === 'dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const toggleTheme = isDarkMode ? 'light' : 'dark';
-    document.body.setAttribute('data-theme', toggleTheme);
-    localStorage.setItem('t', toggleTheme);
-    setIsDarkMode(!isDarkMode);
-  };
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <header className={styles.header}>

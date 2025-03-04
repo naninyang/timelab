@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 // import Script from 'next/script';
 // import { useRouter } from 'next/router';
 // import { GA_TRACKING_ID, pageview } from '@/lib/gtag';
+import { ThemeProvider } from '@/components/context/ThemeContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import '@/styles/globals.sass';
@@ -41,7 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <>
+    <ThemeProvider>
       {/* <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -70,6 +71,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </div>
-    </>
+    </ThemeProvider>
   );
 }
