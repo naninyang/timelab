@@ -48,6 +48,12 @@ export default function EventPercentage() {
       return;
     }
 
+    if (startDate.getTime() === endDate.getTime() && startDate.getTime() === today.getTime()) {
+      setResult('<p>시작일과 종료일이 같습니다.</p>');
+      setProgress(null);
+      return;
+    }
+
     const totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     const elapsedDays = Math.ceil((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     const remainingDays = totalDays - elapsedDays;

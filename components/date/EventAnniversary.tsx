@@ -3,7 +3,7 @@ import styles from '@/styles/Home.module.sass';
 
 const EventAnniversary = () => {
   const [eventName, setEventName] = useState('');
-  const [year, setYear] = useState('2024');
+  const [year, setYear] = useState('2025');
   const [month, setMonth] = useState('1');
   const [day, setDay] = useState('1');
   const [result, setResult] = useState('');
@@ -18,58 +18,57 @@ const EventAnniversary = () => {
     const diffTime = today.getTime() - eventDate.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    let resultText = '';
+    const resultText = (() => {
+      if (diffDays === 0) {
+        return `<strong>오늘은 ${eventName} 기념일 입니다.</strong>`;
+      } else if (diffDays > 0) {
+        const years = Math.floor(diffDays / 365);
+        const months = Math.floor((diffDays % 365) / 30);
+        const weeks = Math.floor(((diffDays % 365) % 30) / 7);
+        const days = ((diffDays % 365) % 30) % 7;
 
-    if (diffDays === 0) {
-      resultText = `<strong>오늘은 ${eventName} 기념일 입니다.</strong>`;
-    } else if (diffDays > 0) {
-      const years = Math.floor(diffDays / 365);
-      const months = Math.floor((diffDays % 365) / 30);
-      const weeks = Math.floor(((diffDays % 365) % 30) / 7);
-      const days = ((diffDays % 365) % 30) % 7;
-
-      if (years > 0) {
-        resultText = `${eventName} ${years}주년`;
-        if (months > 0 || weeks > 0 || days > 0) {
-          resultText += `<em>(${years}년`;
-          if (months > 0) resultText += ` ${months}개월`;
-          if (weeks > 0) resultText += ` ${weeks}주`;
-          if (days > 0) resultText += ` ${days}일`;
-          resultText += '째)</em>';
-        }
-      } else if (months > 0) {
-        resultText = `${eventName} ${months}개월 차`;
-        if (weeks > 0 || days > 0) {
-          resultText += `<em>(${months}개월`;
-          if (weeks > 0) resultText += ` ${weeks}주`;
-          if (days > 0) resultText += ` ${days}일`;
-          resultText += '째)</em>';
-        }
-      } else if (weeks > 0) {
-        resultText = `${eventName} ${weeks}주 차`;
-        if (days > 0) {
-          resultText += `<em>(${weeks}주 ${days}일째)</em>`;
+        if (years > 0) {
+          let text = `${eventName} ${years}주년`;
+          if (months > 0 || weeks > 0 || days > 0) {
+            text += `<em>(${years}년`;
+            if (months > 0) text += ` ${months}개월`;
+            if (weeks > 0) text += ` ${weeks}주`;
+            if (days > 0) text += ` ${days}일`;
+            text += '째)</em>';
+          }
+          return text;
+        } else if (months > 0) {
+          let text = `${eventName} ${months}개월 차`;
+          if (weeks > 0 || days > 0) {
+            text += `<em>(${months}개월`;
+            if (weeks > 0) text += ` ${weeks}주`;
+            if (days > 0) text += ` ${days}일`;
+            text += '째)</em>';
+          }
+          return text;
+        } else if (weeks > 0) {
+          return `${eventName} ${weeks}주 차${days > 0 ? `<em>(${weeks}주 ${days}일째)</em>` : ''}`;
+        } else {
+          return `${eventName} ${diffDays}일 차`;
         }
       } else {
-        resultText = `${eventName} ${diffDays}일 차`;
-      }
-    } else {
-      const absDays = Math.abs(diffDays);
-      const years = Math.floor(absDays / 365);
-      const months = Math.floor((absDays % 365) / 30);
-      const weeks = Math.floor(((absDays % 365) % 30) / 7);
-      const days = ((absDays % 365) % 30) % 7;
+        const absDays = Math.abs(diffDays);
+        const years = Math.floor(absDays / 365);
+        const months = Math.floor((absDays % 365) / 30);
+        const weeks = Math.floor(((absDays % 365) % 30) / 7);
+        const days = ((absDays % 365) % 30) % 7;
 
-      if (years > 0) {
-        resultText = `${eventName} ${years}년 전`;
-      } else if (months > 0) {
-        resultText = `${eventName} ${months}달 전`;
-      } else if (weeks > 0) {
-        resultText = `${eventName} ${weeks}주 전`;
-      } else {
-        resultText = `${eventName} ${absDays}일 전`;
+        if (years > 0) {
+          return `${eventName} ${years}년 전`;
+        } else if (months > 0) {
+          return `${eventName} ${months}달 전`;
+        } else if (weeks > 0) {
+          return `${eventName} ${weeks}주 전`;
+        } else {
+          return `${eventName} ${absDays}일 전`;
+        }
       }
-    }
+    })();
 
     setResult(resultText);
   };
