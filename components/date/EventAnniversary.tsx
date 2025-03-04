@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '@/styles/Home.module.sass';
 
-const EventAnniversary = () => {
+export default function EventAnniversary() {
   const [eventName, setEventName] = useState('');
   const [year, setYear] = useState('2025');
   const [month, setMonth] = useState('1');
@@ -136,6 +136,4 @@ const EventAnniversary = () => {
       )}
     </section>
   );
-};
-
-export default EventAnniversary;
+}
