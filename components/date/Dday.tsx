@@ -21,7 +21,7 @@ const getCurrentDate = (): DateState => {
 const generateOptions = (start: number, end: number) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
 export default function Dday() {
-  const today = getCurrentDate();
+  const [today] = useState(getCurrentDate());
 
   const [baseDate, setBaseDate] = useState<DateState>(today);
   const [dDay, setDDay] = useState<DateState>(today);
