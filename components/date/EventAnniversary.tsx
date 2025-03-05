@@ -112,7 +112,7 @@ export default function EventAnniversary() {
               <label htmlFor="anniversary-month">월</label>
             </div>
             <div className={styles.group}>
-              <select id="day" value={day} onChange={(e) => setDay(e.target.value)}>
+              <select id="anniversary-day" value={day} onChange={(e) => setDay(e.target.value)}>
                 {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
                   <option key={d} value={d}>
                     {d}
