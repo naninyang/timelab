@@ -107,6 +107,9 @@ export default function Father() {
           <button type="button" onClick={calculateDate}>
             <span>계산</span>
           </button>
+          <div className={styles.notice}>
+            <p>* 1개월은 30일로 계산됩니다.</p>
+          </div>
         </div>
       </div>
 
