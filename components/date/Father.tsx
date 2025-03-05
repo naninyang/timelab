@@ -38,7 +38,10 @@ export default function Father() {
         newDate.setFullYear(baseDate.getFullYear() + (direction === 'after' ? value : -value));
       }
 
-      return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일`;
+      const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+      const dayOfWeek = daysOfWeek[newDate.getDay()];
+
+      return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 (${dayOfWeek})`;
     });
   };
 

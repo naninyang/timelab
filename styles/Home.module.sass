@@ -521,6 +521,15 @@
         @include ds.mq(maxExtraSmall)
           font-size: ds.vw(24, 384)
 
+        &:nth-of-type(2)
+          font-size: ds.rem(20)
+
+          @include ds.mq(maxExtraSmall)
+            font-size: ds.vw(18, 384)
+
+          span
+            display: block
+
     .result
       div
         p
@@ -531,13 +540,13 @@
 
       p
         margin: ds.rem(12) 0
-        font-size: ds.rem(30)
+        font-size: ds.rem(26)
         @include ds.fw(500)
         color: ds.$hex-dark
 
         @include ds.mq(maxExtraSmall)
           margin: ds.vw(12, 384) 0
-          font-size: ds.vw(27, 384)
+          font-size: ds.vw(22, 384)
 
         body[data-theme='dark'] &
           color: ds.$hex-light

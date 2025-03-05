@@ -27,6 +27,7 @@ export default function Dday() {
   const [dDay, setDDay] = useState<DateState>(today);
   const [isTodaySelected, setIsTodaySelected] = useState(true);
   const [result, setResult] = useState('');
+  const [dayOfWeekResult, setDayOfWeekResult] = useState('');
 
   useEffect(() => {
     if (isTodaySelected) {
@@ -65,8 +66,25 @@ export default function Dday() {
     const target = new Date(dDay.year, dDay.month - 1, dDay.day);
     const diff = differenceInDays(target, base);
 
+    const daysOfWeek = {
+      Sunday: '일요일',
+      Monday: '월요일',
+      Tuesday: '화요일',
+      Wednesday: '수요일',
+      Thursday: '목요일',
+      Friday: '금요일',
+      Saturday: '토요일',
+    };
+
+    const baseDayOfWeek = daysOfWeek[format(base, 'EEEE') as keyof typeof daysOfWeek];
+    const targetDayOfWeek = daysOfWeek[format(target, 'EEEE') as keyof typeof daysOfWeek];
+
     setResult(
       `<strong>${format(target, 'yyyy년 M월 d일')}</strong>은 <strong>D${diff === 0 ? '-day' : diff > 0 ? '+' + diff : diff}</strong>`,
+    );
+    setDayOfWeekResult(
+      `디데이 <strong>${format(target, 'yyyy년 M월 d일')}</strong>은 <strong>${targetDayOfWeek}</strong>이며,
+     <span>기준일 <strong>${format(base, 'yyyy년 M월 d일')}</strong>은 <strong>${baseDayOfWeek}</strong>입니다.</span>`,
     );
   };
 
@@ -199,9 +217,10 @@ export default function Dday() {
         </div>
       </div>
 
-      {result && (
+      {result && dayOfWeekResult && (
         <div className={`${styles.result} ${styles['dd-result']}`}>
           <p dangerouslySetInnerHTML={{ __html: result }} />
+          <p dangerouslySetInnerHTML={{ __html: dayOfWeekResult }} />
         </div>
       )}
     </section>
