@@ -12,7 +12,7 @@ interface Props {
   pageOgType?: string;
 }
 
-export const originTitle = '타임랩 timelab';
+export const originTitle = '날짜계산기 - 타임랩 timelab';
 
 const Seo = ({
   pageTitles,
