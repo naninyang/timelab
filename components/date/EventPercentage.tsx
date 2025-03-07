@@ -178,29 +178,29 @@ export default function EventPercentage() {
           </button>
         </div>
       </div>
-      <div className={styles['result-container']}>
-        {result && (
+      {result && (
+        <div className={styles['result-container']}>
           <div
             className={`${styles.result} ${styles['event-percentage-result']}`}
             dangerouslySetInnerHTML={{ __html: result }}
           />
-        )}
-        {progress !== null && (
-          <div className={styles.progress}>
-            <div
-              className={styles['progress-bar']}
-              role="progressbar"
-              aria-label="이벤트 도달 상태"
-              aria-valuenow={progress}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              <div className={styles.progressing} style={{ width: `${progress}%` }} />
+          {progress !== null && (
+            <div className={styles.progress}>
+              <div
+                className={styles['progress-bar']}
+                role="progressbar"
+                aria-label="이벤트 도달 상태"
+                aria-valuenow={progress}
+                aria-valuemin={0}
+                aria-valuemax={100}
+              >
+                <div className={styles.progressing} style={{ width: `${progress}%` }} />
+              </div>
+              <p>{progress}% 진행</p>
             </div>
-            <p>{progress}% 진행</p>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }

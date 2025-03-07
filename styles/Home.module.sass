@@ -152,53 +152,6 @@
           @include ds.mq(maxExtraSmall)
             padding-bottom: ds.vw(24, 384)
 
-      .result-container
-        display: flex
-        flex-direction: column
-
-        .event-percentage-result
-          p
-            font-size: ds.rem(20)
-
-            @include ds.mq(maxExtraSmall)
-              font-size: ds.vw(20, 384)
-
-            em
-              font-style: normal
-              font-size: ds.rem(14)
-              color: ds.$hex-gray-dark
-
-              @include ds.mq(maxExtraSmall)
-                font-size: ds.vw(14, 384)
-
-        .progress
-          .progress-bar
-            background-color: rgba(ds.$hex-dark, .1)
-            overflow: hidden
-            border-radius: ds.rem(16)
-            width: 100%
-            height: ds.rem(16)
-
-            body[data-theme='dark'] &
-              background-color: rgba(ds.$hex-light, .1)
-
-            .progressing
-              animation: 1s linear 0s infinite normal none running progress
-              background-color: ds.$hex-accent-light
-              background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent)
-              background-size: ds.rem(16)
-              display: block
-              border-radius: ds.rem(16)
-              height: ds.rem(16)
-              min-width: ds.rem(16)
-
-              body[data-theme='dark'] &
-                background-color: ds.$hex-accent-dark
-
-          p
-            font-size: ds.rem(24)
-            @include ds.fw(900)
-
     &.section-event-anniversary
       display: flex
       flex-direction: column
@@ -302,6 +255,95 @@
 
             @include ds.mq(maxExtraSmall)
               font-size: ds.vw(20, 384)
+
+    &.section-army
+      @include ds.mq(minLarge)
+        margin: 0
+        border-bottom: ds.rem(2) solid ds.$hex-gray-light
+        max-width: none
+        width: 100%
+
+      .army
+        display: flex
+
+        @include ds.mq(maxMedium)
+          flex-direction: column
+
+        @include ds.mq(minLarge)
+          gap: ds.rem(72)
+
+        .ymd, .select
+          @include ds.mq(minLarge)
+            @include ds.col
+
+        .select
+          @include ds.mq(minLarge)
+            select
+              width: 100%
+              text-align: left
+
+        .ymd
+          @include ds.mq(minLarge)
+
+            .group
+              @include ds.col
+
+          select
+            @include ds.col
+            width: auto
+
+    .result-container
+      display: flex
+      flex-direction: column
+
+      > p, li
+        font-size: ds.rem(20)
+
+        @include ds.mq(maxExtraSmall)
+          font-size: ds.vw(20, 384)
+
+      .event-percentage-result
+        p
+          font-size: ds.rem(20)
+
+          @include ds.mq(maxExtraSmall)
+            font-size: ds.vw(20, 384)
+
+          em
+            font-style: normal
+            font-size: ds.rem(14)
+            color: ds.$hex-gray-dark
+
+            @include ds.mq(maxExtraSmall)
+              font-size: ds.vw(14, 384)
+
+      .progress
+        .progress-bar
+          background-color: rgba(ds.$hex-dark, .1)
+          overflow: hidden
+          border-radius: ds.rem(16)
+          width: 100%
+          height: ds.rem(16)
+
+          body[data-theme='dark'] &
+            background-color: rgba(ds.$hex-light, .1)
+
+          .progressing
+            animation: 1s linear 0s infinite normal none running progress
+            background-color: ds.$hex-accent-light
+            background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent)
+            background-size: ds.rem(16)
+            display: block
+            border-radius: ds.rem(16)
+            height: ds.rem(16)
+            min-width: ds.rem(16)
+
+            body[data-theme='dark'] &
+              background-color: ds.$hex-accent-dark
+
+        p
+          font-size: ds.rem(24)
+          @include ds.fw(900)
 
     .fieldset
       display: flex
