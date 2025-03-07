@@ -5,6 +5,7 @@ import Diff from '@/components/date/Diff';
 import EventAnniversary from '@/components/date/EventAnniversary';
 import EventPercentage from '@/components/date/EventPercentage';
 import Father from '@/components/date/Father';
+import Pregnancy from '@/components/date/Pregnancy';
 import SolarLunar from '@/components/date/SolarLunar';
 import Supported from '@/components/date/Supported';
 import styles from '@/styles/Home.module.sass';
@@ -23,6 +24,7 @@ export default function Home() {
         <Supported />
         <SolarLunar />
         <Army />
+        <Pregnancy />
       </div>
     </main>
   );
