@@ -20,7 +20,6 @@ const getDaysInMonth = (year: number, month: number) => {
 };
 
 const Ovulation = () => {
-  const today = new Date();
   const minLastPeriod = -40;
   const maxLastPeriod = 40;
   const minPrevPeriod = -80;

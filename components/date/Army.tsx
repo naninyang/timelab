@@ -36,7 +36,7 @@ export default function Army() {
     if (day > lastDay) {
       setDay(lastDay);
     }
-  }, [year, month]);
+  }, [year, month, day]);
 
   const handleCalculate = () => {
     const enlistDate = dayjs(`${year}-${month}-${day}`);

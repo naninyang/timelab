@@ -33,7 +33,7 @@ export default function SolarLunar() {
     if (day > lastDay) {
       setDay(lastDay);
     }
-  }, [year, month]);
+  }, [year, month, day]);
 
   const handleConvert = () => {
     const dateObj = new Date(year, month - 1, day);
@@ -64,34 +64,34 @@ export default function SolarLunar() {
           <div className={styles.solu}>
             <div className={styles.ymd}>
               <div className={styles.group}>
-                <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
+                <select id="solu-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
                   {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
                     <option key={y} value={y}>
                       {y}
                     </option>
                   ))}
                 </select>
-                <label htmlFor="">년</label>
+                <label htmlFor="solu-year">년</label>
               </div>
               <div className={styles.group}>
-                <select value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+                <select id="solu-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
                     <option key={m} value={m}>
                       {m}
                     </option>
                   ))}
                 </select>
-                <label htmlFor="">월</label>
+                <label htmlFor="solu-month">월</label>
               </div>
               <div className={styles.group}>
-                <select value={day} onChange={(e) => setDay(Number(e.target.value))}>
+                <select id="solu-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
                   {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
                     <option key={d} value={d}>
                       {d}
                     </option>
                   ))}
                 </select>
-                <label htmlFor="">일</label>
+                <label htmlFor="solu-day">일</label>
               </div>
             </div>
             <div className={styles.select}>

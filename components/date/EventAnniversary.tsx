@@ -20,7 +20,7 @@ export default function EventAnniversary() {
     if (Number(day) > lastDay) {
       setDay(String(lastDay));
     }
-  }, [year, month]);
+  }, [year, month, day]);
 
   const calculateDate = () => {
     const today = new Date();
