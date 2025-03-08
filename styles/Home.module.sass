@@ -292,6 +292,30 @@
             @include ds.col
             width: auto
 
+    &.section-ovulation
+      .diff
+        flex-wrap: wrap
+        &:first-of-type
+          & + .diff
+            display: flex
+            flex-direction: column
+
+            .checkbox
+              display: flex
+              align-items: center
+
+              input
+                @include ds.screen-reader-only
+
+        > label
+          width: 100%
+
+      .result
+        p
+          font-size: ds.rem(16)
+          span
+            display: block
+
     .result-container
       display: flex
       flex-direction: column
@@ -395,10 +419,10 @@
       select
         cursor: pointer
 
-      select, input
+      select, input[type='text']
         appearance: none
 
-      select, input, label
+      select, input[type='text'], label
         height: ds.rem(53)
         font-size: ds.rem(37)
         line-height: 1
@@ -407,7 +431,7 @@
           height: ds.vw(53, 384)
           font-size: ds.vw(32, 384)
 
-      select, input
+      select, input[type='text']
         appearance: none
         background-color: transparent
         height: ds.rem(53)

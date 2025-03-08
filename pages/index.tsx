@@ -5,6 +5,7 @@ import Diff from '@/components/date/Diff';
 import EventAnniversary from '@/components/date/EventAnniversary';
 import EventPercentage from '@/components/date/EventPercentage';
 import Father from '@/components/date/Father';
+import Ovulation from '@/components/date/Ovulation';
 import Pregnancy from '@/components/date/Pregnancy';
 import SolarLunar from '@/components/date/SolarLunar';
 import Supported from '@/components/date/Supported';
@@ -25,6 +26,7 @@ export default function Home() {
         <SolarLunar />
         <Army />
         <Pregnancy />
+        <Ovulation />
       </div>
     </main>
   );
