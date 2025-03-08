@@ -20,6 +20,10 @@ const getCurrentDate = (): DateState => {
 
 const generateOptions = (start: number, end: number) => Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
+const getDaysInMonth = (year: number, month: number): number => {
+  return new Date(year, month, 0).getDate();
+};
+
 export default function Dday() {
   const [today] = useState(getCurrentDate());
 
@@ -40,10 +44,16 @@ export default function Dday() {
     field: keyof DateState,
     value: number,
   ) => {
-    setter((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    setter((prev) => {
+      const newDate = { ...prev, [field]: value };
+      if (field === 'year' || field === 'month') {
+        const maxDay = getDaysInMonth(newDate.year, newDate.month);
+        if (newDate.day > maxDay) {
+          newDate.day = maxDay;
+        }
+      }
+      return newDate;
+    });
   };
 
   const toggleDates = () => {
@@ -130,7 +140,7 @@ export default function Dday() {
                   value={baseDate.day}
                   onChange={(e) => handleChange(setBaseDate, 'day', Number(e.target.value))}
                 >
-                  {generateOptions(1, 31).map((day) => (
+                  {generateOptions(1, getDaysInMonth(baseDate.year, baseDate.month)).map((day) => (
                     <option key={day} value={day}>
                       {day}
                     </option>
@@ -195,7 +205,7 @@ export default function Dday() {
                       value={dDay.day}
                       onChange={(e) => handleChange(setDDay, 'day', Number(e.target.value))}
                     >
-                      {generateOptions(1, 31).map((day) => (
+                      {generateOptions(1, getDaysInMonth(dDay.year, dDay.month)).map((day) => (
                         <option key={day} value={day}>
                           {day}
                         </option>
