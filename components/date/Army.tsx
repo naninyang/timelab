@@ -21,12 +21,22 @@ export default function Army() {
   const [year, setYear] = useState(today.year());
   const [month, setMonth] = useState(today.month() + 1);
   const [day, setDay] = useState(today.date());
+  const [daysInMonth, setDaysInMonth] = useState(31);
   const [serviceType, setServiceType] = useState('육군');
   const [calculatedData, setCalculatedData] = useState<{
     dischargeDate: dayjs.Dayjs;
     todayDiff: number;
     progress: number;
   } | null>(null);
+
+  useEffect(() => {
+    const lastDay = new Date(year, month, 0).getDate();
+    setDaysInMonth(lastDay);
+
+    if (day > lastDay) {
+      setDay(lastDay);
+    }
+  }, [year, month]);
 
   const handleCalculate = () => {
     const enlistDate = dayjs(`${year}-${month}-${day}`);
@@ -67,7 +77,7 @@ export default function Army() {
               </div>
               <div className={styles.group}>
                 <select id="army-start-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
-                  {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                  {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
                     <option key={d} value={d}>
                       {d}
                     </option>

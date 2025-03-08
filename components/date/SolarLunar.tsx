@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { isHoliday, getLunar, getSolar } from 'holiday-kr';
 import styles from '@/styles/Home.module.sass';
 
@@ -23,8 +23,17 @@ export default function SolarLunar() {
   const [year, setYear] = useState<number>(currentYear);
   const [month, setMonth] = useState<number>(currentMonth);
   const [day, setDay] = useState<number>(currentDate);
+  const [daysInMonth, setDaysInMonth] = useState<number>(31);
   const [conversionType, setConversionType] = useState<'solarToLunar' | 'lunarToSolar'>('solarToLunar');
   const [result, setResult] = useState<string>('');
+
+  useEffect(() => {
+    const lastDay = new Date(year, month, 0).getDate();
+    setDaysInMonth(lastDay);
+    if (day > lastDay) {
+      setDay(lastDay);
+    }
+  }, [year, month]);
 
   const handleConvert = () => {
     const dateObj = new Date(year, month - 1, day);
@@ -76,7 +85,7 @@ export default function SolarLunar() {
               </div>
               <div className={styles.group}>
                 <select value={day} onChange={(e) => setDay(Number(e.target.value))}>
-                  {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                  {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
                     <option key={d} value={d}>
                       {d}
                     </option>

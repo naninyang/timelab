@@ -12,6 +12,10 @@ export default function EventPercentage() {
   const [result, setResult] = useState('');
   const [progress, setProgress] = useState<number | null>(null);
 
+  function getDaysInMonth(year: number, month: number): number {
+    return new Date(year, month, 0).getDate();
+  }
+
   function calculateEventProgress() {
     if (!eventName.trim()) {
       setResult('<p><strong>이벤트 이름을 입력해주세요.</strong></p>');
@@ -130,7 +134,7 @@ export default function EventPercentage() {
               </div>
               <div className={styles.group}>
                 <select id="event-start-day" value={startDay} onChange={(e) => setStartDay(Number(e.target.value))}>
-                  {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                  {Array.from({ length: getDaysInMonth(startYear, startMonth) }, (_, i) => i + 1).map((day) => (
                     <option key={day} value={day}>
                       {day}
                     </option>
@@ -163,7 +167,7 @@ export default function EventPercentage() {
               </div>
               <div className={styles.group}>
                 <select id="event-end-day" value={endDay} onChange={(e) => setEndDay(Number(e.target.value))}>
-                  {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                  {Array.from({ length: getDaysInMonth(endYear, endMonth) }, (_, i) => i + 1).map((day) => (
                     <option key={day} value={day}>
                       {day}
                     </option>

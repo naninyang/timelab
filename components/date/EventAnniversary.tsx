@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.sass';
 
 export default function EventAnniversary() {
@@ -7,10 +7,20 @@ export default function EventAnniversary() {
   const [month, setMonth] = useState('1');
   const [day, setDay] = useState('1');
   const [result, setResult] = useState('');
+  const [daysInMonth, setDaysInMonth] = useState(31);
 
   const currentYear = new Date().getFullYear();
   const minYear = 1950;
   const maxYear = currentYear + 50;
+
+  useEffect(() => {
+    const lastDay = new Date(Number(year), Number(month), 0).getDate();
+    setDaysInMonth(lastDay);
+
+    if (Number(day) > lastDay) {
+      setDay(String(lastDay));
+    }
+  }, [year, month]);
 
   const calculateDate = () => {
     const today = new Date();
@@ -113,7 +123,7 @@ export default function EventAnniversary() {
             </div>
             <div className={styles.group}>
               <select id="anniversary-day" value={day} onChange={(e) => setDay(e.target.value)}>
-                {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
                   <option key={d} value={d}>
                     {d}
                   </option>
