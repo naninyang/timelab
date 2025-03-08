@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.sass';
 
 export default function Supported() {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles['section-half']} ${styles['section-anthor']}`}>
       <h2>
         <SupportedHeadline />
       </h2>

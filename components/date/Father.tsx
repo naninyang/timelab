@@ -50,7 +50,7 @@ export default function Father() {
   }, [month, year, day, maxDays]);
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles['section-half']}`}>
       <h2>이전/이후 계산</h2>
       <div className={styles.form}>
         <div className={styles.fieldset}>
@@ -107,9 +107,11 @@ export default function Father() {
               <option value="before">이전</option>
             </select>
           </div>
-          <button type="button" onClick={calculateDate}>
-            <span>계산</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={calculateDate}>
+              <span>계산</span>
+            </button>
+          </div>
           <div className={styles.notice}>
             <p>* 1개월은 30일로 계산됩니다.</p>
           </div>

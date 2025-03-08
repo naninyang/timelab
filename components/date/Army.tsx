@@ -96,9 +96,11 @@ export default function Army() {
               </select>
             </div>
           </div>
-          <button type="button" onClick={handleCalculate}>
-            <span>계산</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={handleCalculate}>
+              <span>계산</span>
+            </button>
+          </div>
         </div>
       </div>
       {calculatedData && (
@@ -107,16 +109,19 @@ export default function Army() {
             <p>이미 전역/해제소집 되었습니다.</p>
           ) : (
             <>
-              <ul>
-                <li>
-                  {calculatedData.dischargeDate.format('YYYY년 M월 D일')} 전역. (D-
-                  {calculatedData.dischargeDate.diff(today, 'day')})
-                </li>
-                <li>
-                  총 복무일 {SERVICE_PERIODS[serviceType]}일
-                  {calculatedData.todayDiff >= 0 && ` (${calculatedData.todayDiff}일 복무 중)`}
-                </li>
-              </ul>
+              <dl>
+                <div>
+                  <dt>전역일</dt>
+                  <dd>{calculatedData.dischargeDate.format('YYYY년 M월 D일')}</dd>
+                </div>
+                <div>
+                  <dt>총 복무일</dt>
+                  <dd>
+                    {SERVICE_PERIODS[serviceType]}일
+                    {calculatedData.todayDiff >= 0 && ` (${calculatedData.todayDiff}일 복무 중)`}
+                  </dd>
+                </div>
+              </dl>
               <div className={styles.progress}>
                 <div
                   className={styles['progress-bar']}
@@ -128,7 +133,10 @@ export default function Army() {
                 >
                   <div className={styles.progressing} style={{ width: `${calculatedData.progress}%` }}></div>
                 </div>
-                <p>{calculatedData.progress}%</p>
+                <p>
+                  D-
+                  {calculatedData.dischargeDate.diff(today, 'day')} ({calculatedData.progress}% 진행)
+                </p>
               </div>
             </>
           )}

@@ -83,7 +83,7 @@ export default function EventAnniversary() {
   };
 
   return (
-    <section className={`${styles.section} ${styles['section-event-anniversary']}`}>
+    <section className={`${styles.section} ${styles['section-event-anniversary']} ${styles['section-half']}`}>
       <h2>기념일 계산</h2>
       <div className={styles.form}>
         <div className={styles.fieldset}>
@@ -132,9 +132,11 @@ export default function EventAnniversary() {
               <label htmlFor="anniversary-day">일</label>
             </div>
           </div>
-          <button type="button" onClick={calculateDate}>
-            <span>계산</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={calculateDate}>
+              <span>계산</span>
+            </button>
+          </div>
         </div>
       </div>
 

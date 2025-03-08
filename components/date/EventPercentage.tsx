@@ -177,9 +177,11 @@ export default function EventPercentage() {
               </div>
             </div>
           </div>
-          <button type="button" onClick={calculateEventProgress}>
-            <span>계산</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={calculateEventProgress}>
+              <span>계산</span>
+            </button>
+          </div>
         </div>
       </div>
       {result && (

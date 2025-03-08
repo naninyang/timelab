@@ -18,6 +18,7 @@
 
     @include ds.mq(maxMedium)
       border-bottom: ds.rem(2) solid ds.$hex-gray-light
+      width: 100%
 
     @include ds.mq(maxExtraSmall)
       gap: ds.vw(17, 384)
@@ -28,16 +29,17 @@
     @include ds.mq(minLarge)
       margin: 0
       border-top: ds.rem(2) solid ds.$hex-gray-light
-      gap: 0
 
-      &:nth-of-type(1), &:nth-of-type(5)
-        margin-right: ds.rem(46)
-
-      &:nth-of-type(2), &:nth-of-type(6)
-        margin-left: ds.rem(46)
-
-      &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(6)
+      &.section-half
         border-top: 0
+        max-width: none
+        width: 50%
+
+        .form
+          width: ds.rem(384)
+
+      &.section-anthor
+        align-items: flex-end
 
     &:last-of-type
       border-bottom: 0
@@ -71,8 +73,6 @@
         width: 100%
 
       .fieldset
-        gap: 0
-
         .diff
           padding-bottom: ds.rem(12)
 
@@ -120,7 +120,7 @@
 
         input
           width: 100%
-          text-align: left
+          text-align: left!important
 
       .event-container
         display: flex
@@ -149,6 +149,9 @@
         &:last-of-type
           padding-bottom: ds.rem(24)
 
+          @include ds.mq(minLarge)
+            padding-bottom: 0
+
           @include ds.mq(maxExtraSmall)
             padding-bottom: ds.vw(24, 384)
 
@@ -160,10 +163,6 @@
         padding-bottom: 0
 
       & + .section
-        @include ds.mq(minLarge)
-          // padding-bottom: 0
-          width: ds.rem(368)
-
         @include ds.mq(maxMedium)
           width: 100%
 
@@ -187,7 +186,7 @@
 
         input
           width: 100%
-          text-align: left
+          text-align: left!important
 
       .diff
         .group
@@ -214,7 +213,6 @@
     &.section-solu
       @include ds.mq(minLarge)
         margin: 0
-        border-bottom: ds.rem(2) solid ds.$hex-gray-light
         max-width: none
         width: 100%
 
@@ -284,7 +282,6 @@
 
         .ymd
           @include ds.mq(minLarge)
-
             .group
               @include ds.col
 
@@ -300,12 +297,49 @@
             display: flex
             flex-direction: column
 
+            & > .diff
+              padding-top: ds.rem(12)
+              padding-bottom: 0
+
             .checkbox
               display: flex
               align-items: center
+              position: relative
+
+              > div
+                display: flex
+                justify-content: center
+                align-items: center
+                width: ds.rem(24)
+                height: ds.rem(24)
+
+                &.checked
+                  svg
+                    path
+                      fill: ds.$hex-accent-light
+
+                      body[data-theme='dark'] &
+                        fill: ds.$hex-accent-dark
+
+                &.unchecked
+                  svg
+                    path
+                      fill: rgba(ds.$hex-dark, .7)
+
+                      body[data-theme='dark'] &
+                        fill: rgba(ds.$hex-light, .7)
 
               input
                 @include ds.screen-reader-only
+
+              label
+                position: absolute
+                top: 0
+                left: 0
+                height: auto
+                padding-left: ds.rem(27)
+                font-size: ds.rem(20)
+                font-weight: 700
 
         > label
           width: 100%
@@ -315,6 +349,12 @@
           font-size: ds.rem(16)
           span
             display: block
+
+    &.section-female
+      label.anthor
+        height: auto!important
+        font-size: ds.rem(16)!important
+        font-weight: 700
 
     .result-container
       display: flex
@@ -365,9 +405,11 @@
               font-size: ds.vw(14, 384)
 
       .progress
+
         .progress-bar
           background-color: rgba(ds.$hex-dark, .1)
           overflow: hidden
+          margin: ds.rem(12) 0
           border-radius: ds.rem(16)
           width: 100%
           height: ds.rem(16)
@@ -411,18 +453,13 @@
         display: flex
         align-items: center
 
-      > label
-        height: auto!important
-
-        font-size: ds.rem(16)!important
-
       select
         cursor: pointer
 
-      select, input[type='text']
+      select, input[type='number'], input[type='text']
         appearance: none
 
-      select, input[type='text'], label
+      select, input[type='number'], input[type='text'], label
         height: ds.rem(53)
         font-size: ds.rem(37)
         line-height: 1
@@ -431,7 +468,7 @@
           height: ds.vw(53, 384)
           font-size: ds.vw(32, 384)
 
-      select, input[type='text']
+      select, input[type='number'], input[type='text']
         appearance: none
         background-color: transparent
         height: ds.rem(53)
@@ -455,14 +492,12 @@
 
       .ymd, .calc
         display: flex
-        gap: ds.rem(17)
 
         @include ds.mq(maxExtraSmall)
           gap: ds.vw(17, 384)
 
       .ymd
-        display: flex
-        gap: ds.rem(17)
+        justify-content: space-between
 
         @include ds.mq(maxExtraSmall)
           gap: ds.vw(17, 384)
@@ -489,7 +524,7 @@
 
       .calc
         gap: ds.rem(10)
-        padding-bottom: ds.rem(12)
+        justify-content: space-between
 
         @include ds.mq(maxExtraSmall)
           gap: ds.vw(10, 384)
@@ -516,7 +551,6 @@
         @include ds.mq(minLarge)
           align-items: flex-start
           gap: ds.rem(23)
-          padding-bottom: ds.rem(23)
 
           .diff
             @include ds.col
@@ -647,6 +681,13 @@
           background-color: ds.$hex-dark
           color: ds.$hex-accent-dark
 
+      .submit
+        width: 100%
+        padding-top: ds.rem(12)
+
+        button
+          width: 100%
+
       .notice
         p
           margin: ds.rem(3)
@@ -700,6 +741,9 @@
     .diff
       display: flex
 
+      @include ds.mq(maxExtraSmall)
+        gap: ds.vw(12, 384)
+
       .group
         &:first-of-type
           align-items: center
@@ -724,6 +768,8 @@
       flex-grow: 1
       justify-content: space-between
       align-items: center
+      max-width: ds.rem(384)
+      width: 100%
 
       svg
         width: ds.rem(214)

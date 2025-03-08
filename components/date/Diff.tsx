@@ -83,7 +83,7 @@ export default function Diff() {
   }, [endMonth, endYear, maxEndDays, endDay]);
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles['section-half']} ${styles['section-anthor']}`}>
       <h2>날짜 차이 계산</h2>
       <div className={styles.form}>
         <div className={styles.fieldset}>
@@ -153,9 +153,11 @@ export default function Diff() {
               <label htmlFor="diff-end-day">일</label>
             </div>
           </div>
-          <button type="button" onClick={calculateDifference}>
-            <span>계산</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={calculateDifference}>
+              <span>계산</span>
+            </button>
+          </div>
           <div className={styles.notice}>
             <p>* 시작일은 카운팅되지 않습니다.</p>
             <p>* 1개월은 30일로 계산됩니다.</p>

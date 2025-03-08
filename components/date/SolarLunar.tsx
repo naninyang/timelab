@@ -104,9 +104,11 @@ export default function SolarLunar() {
               </select>
             </div>
           </div>
-          <button type="button" onClick={handleConvert}>
-            <span>변환</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={handleConvert}>
+              <span>변환</span>
+            </button>
+          </div>
           <div className={styles.notice}>
             <p>* 음력→양력 변환시 윤달과 평달 중 평달만 표시됩니다.</p>
           </div>

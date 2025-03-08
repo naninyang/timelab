@@ -89,14 +89,19 @@ const Ovulation = () => {
   };
 
   return (
-    <section className={`${styles.section} ${styles['section-ovulation']}`}>
+    <section
+      className={`${styles.section} ${styles['section-ovulation']} ${styles['section-half']} ${styles['section-anthor']} ${styles['section-female']}`}
+    >
       <h2>배란일 계산</h2>
       <div className={styles.form}>
         <div className={styles.fieldset}>
-          <label htmlFor="ovu-after-year">최근 생리 시작일을 입력해 주세요</label>
+          <label htmlFor="ovu-after-year" className={styles.anthor}>
+            최근 생리 시작일을 입력해 주세요
+          </label>
           <div className={styles.diff}>
             <div className={styles.group}>
               <select
+                id="ovu-after-year"
                 value={selectedLastPeriod.year}
                 onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, year: Number(e.target.value) })}
               >
@@ -156,9 +161,10 @@ const Ovulation = () => {
             </div>
             {unknownCycle ? (
               <div className={styles.diff}>
-                <label>그전 생리 시작일을 입력해 주세요.</label>
+                <label className={styles.anthor}>그전 생리 시작일을 입력해 주세요.</label>
                 <div className={styles.group}>
                   <select
+                    id="ovu-before-year"
                     value={selectedPrevPeriod.year}
                     onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, year: Number(e.target.value) })}
                   >
@@ -168,10 +174,11 @@ const Ovulation = () => {
                       </option>
                     ))}
                   </select>
-                  <label>년</label>
+                  <label htmlFor="ovu-before-year">년</label>
                 </div>
                 <div className={styles.group}>
                   <select
+                    id="ovu-before-month"
                     value={selectedPrevPeriod.month}
                     onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, month: Number(e.target.value) })}
                   >
@@ -181,10 +188,11 @@ const Ovulation = () => {
                       </option>
                     ))}
                   </select>
-                  <label>월</label>
+                  <label htmlFor="ovu-before-month">월</label>
                 </div>
                 <div className={styles.group}>
                   <select
+                    id="ovu-before-day"
                     value={selectedPrevPeriod.day}
                     onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, day: Number(e.target.value) })}
                   >
@@ -197,28 +205,32 @@ const Ovulation = () => {
                       </option>
                     ))}
                   </select>
-                  <label>일</label>
+                  <label htmlFor="ovu-before-day">일</label>
                 </div>
               </div>
             ) : (
               <div className={styles.diff}>
-                <label>월경 주기</label>
+                <label htmlFor="ovu-term" className={styles.anthor}>
+                  월경 주기
+                </label>
                 <div className={styles.group}>
-                  <select value={cycleLength} onChange={(e) => setCycleLength(Number(e.target.value))}>
+                  <select id="ovu-term" value={cycleLength} onChange={(e) => setCycleLength(Number(e.target.value))}>
                     {Array.from({ length: 21 }, (_, i) => i + 20).map((c) => (
                       <option key={c} value={c}>
                         {c}
                       </option>
                     ))}
                   </select>
-                  <label>일</label>
+                  <label htmlFor="ovu-term">일</label>
                 </div>
               </div>
             )}
           </div>
-          <button type="button" onClick={handleCalculate}>
-            <span>계산</span>
-          </button>
+          <div className={styles.submit}>
+            <button type="button" onClick={handleCalculate}>
+              <span>계산</span>
+            </button>
+          </div>
         </div>
       </div>
       {result && <div className={styles.result} dangerouslySetInnerHTML={{ __html: result }} />}
