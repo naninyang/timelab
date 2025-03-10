@@ -75,11 +75,11 @@ section.section
 
   h2
     font-size: ds.rem(20)
-    @include ds.fw(900)
+    @include ds.fw(700)
 
     svg
-      width: ds.rem(248)
-      height: ds.rem(23)
+      width: ds.rem(129)
+      height: ds.rem(19)
 
       path
         fill: ds.$hex-dark
@@ -187,9 +187,6 @@ section.section
         li
           @include ds.fw(700)
           font-size: ds.rem(18)
-
-          @include ds.mq(maxExtraSmall)
-            font-size: ds.vw(20, 384)
 
   &.section-army
     @include ds.mq(minLarge)
@@ -299,7 +296,7 @@ section.section
     label.anthor
       height: auto!important
       font-size: ds.rem(16)!important
-      font-weight: 700
+      font-weight: 500
 
   .result-container
     display: flex
@@ -307,9 +304,6 @@ section.section
 
     > p, li, dl
       font-size: ds.rem(20)
-
-      @include ds.mq(maxExtraSmall)
-        font-size: ds.vw(20, 384)
 
     dl
       div
@@ -325,9 +319,6 @@ section.section
           opacity: .7
           font-size: ds.rem(18)
 
-          @include ds.mq(maxExtraSmall)
-            font-size: ds.vw(18, 384)
-
         dd
           @include ds.fw(700)
 
@@ -335,19 +326,12 @@ section.section
       p
         font-size: ds.rem(20)
 
-        @include ds.mq(maxExtraSmall)
-          font-size: ds.vw(20, 384)
-
         em
           font-style: normal
           font-size: ds.rem(14)
           color: ds.$hex-gray-dark
 
-          @include ds.mq(maxExtraSmall)
-            font-size: ds.vw(14, 384)
-
     .progress
-
       .progress-bar
         background-color: rgba(ds.$hex-dark, .1)
         overflow: hidden
@@ -453,19 +437,6 @@ section.section
             padding-right: ds.rem(12)
             color: ds.$hex-gray-dark
 
-    .calc
-      gap: ds.rem(10)
-      justify-content: space-between
-
-      @include ds.mq(maxExtraSmall)
-        gap: ds.vw(10, 384)
-
-      .group
-        gap: ds.rem(10)
-
-        @include ds.mq(maxExtraSmall)
-          gap: ds.vw(10, 384)
-
     .wrapper
       display: flex
 
@@ -533,10 +504,6 @@ section.section
           @include ds.mq(maxMedium)
             width: ds.rem(23)
             height: ds.rem(23)
-
-          @include ds.mq(maxExtraSmall)
-            width: ds.vw(23, 384)
-            height: ds.vw(23, 384)
 
           path
             fill: ds.$hex-danger
@@ -623,18 +590,11 @@ section.section
       p
         font-size: ds.rem(20)
 
-        @include ds.mq(maxExtraSmall)
-          font-size: ds.vw(18, 384)
-
     p
       margin: ds.rem(12) 0
       font-size: ds.rem(26)
       @include ds.fw(500)
       color: ds.$hex-dark
-
-      @include ds.mq(maxExtraSmall)
-        margin: ds.vw(12, 384) 0
-        font-size: ds.vw(22, 384)
 
       body[data-theme='dark'] &
         color: ds.$hex-light
@@ -655,19 +615,33 @@ section.section
     max-width: ds.rem(384)
     width: 100%
 
-    svg
-      width: ds.rem(214)
-      height: ds.rem(214)
+    .image
+      width: ds.rem(107)
+      height: ds.rem(107)
 
-      @include ds.mq(maxExtraSmall)
-        width: ds.vw(214, 384)
-        height: ds.vw(214, 384)
+      svg
+        width: 100%
+        height: 100%
 
-      path
-        fill: ds.$hex-dark
+        path
+          fill: ds.$hex-dark
 
-        body[data-theme='dark'] &
-          fill: ds.$hex-white
+          body[data-theme='dark'] &
+            fill: ds.$hex-white
+
+    .text
+      width: ds.rem(260)
+      height: ds.rem(45)
+
+      svg
+        width: 100%
+        height: 100%
+
+        path
+          fill: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            fill: ds.$hex-accent-dark
 
     a
       transition: background 0.3s ease-in-out, transform 0.2s

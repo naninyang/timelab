@@ -1,4 +1,4 @@
-import { SupportedHeadline, SupportedImage } from '../Svgs';
+import { SupportedHeadline, SupportedImage, SupportedText } from '../Svgs';
 import Anchor from '../Anchor';
 import styles from '@/styles/Home.module.sass';
 
@@ -10,7 +10,12 @@ export default function Supported() {
           <SupportedHeadline />
         </h2>
         <div className={styles.gffd}>
-          <SupportedImage />
+          <div className={styles.image}>
+            <SupportedImage />
+          </div>
+          <div className={styles.text}>
+            <SupportedText />
+          </div>
           <Anchor href="https://www.youtube.com/@GodFFreeDom_sadman">
             <span>채널 이동</span>
           </Anchor>
