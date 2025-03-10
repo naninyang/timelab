@@ -169,7 +169,7 @@ export default function Diff() {
             </div>
           </div>
         </div>
-        <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />
+        {differenceText && <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />}
       </div>
     </section>
   );
