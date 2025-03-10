@@ -59,9 +59,9 @@ section.section
     flex-grow: 1
     gap: ds.rem(13)
 
-  &:last-of-type, &:nth-last-of-type(2)
-    border-bottom: 0
-    padding-bottom: 0
+  @include ds.mq(minLarge)
+    &:last-of-type, &:nth-last-of-type(2)
+      padding-bottom: 0
 
   .module
     padding: ds.rem(17)
