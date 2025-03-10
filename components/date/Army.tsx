@@ -102,6 +102,10 @@ export default function Army() {
                 <span>계산</span>
               </button>
             </div>
+            <div className={styles.notice}>
+              <p>* 결과는 행정효력이 없습니다.</p>
+              <p>* 참고용으로만 활용하시고 정확한 내용은 병무청에서 확인하세요.</p>
+            </div>
           </div>
         </div>
         {calculatedData && (

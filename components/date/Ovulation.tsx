@@ -80,7 +80,7 @@ const Ovulation = () => {
     const nextPeriodDayName = weekDays[nextPeriodDate.getDay()];
 
     setResult(
-      `<p><span>배란예정일은 <strong>${ovulationDate.getMonth() + 1}월 ${ovulationDate.getDate()}일 (${ovulationDayName}요일, D-${
+      `<p><span>배란 예정일은 <strong>${ovulationDate.getMonth() + 1}월 ${ovulationDate.getDate()}일 (${ovulationDayName}요일, D-${
         cycleDays - 14
       }일)이며</strong></span>
      다음 예상 생리일은 <strong>${nextPeriodDate.getMonth() + 1}월 ${nextPeriodDate.getDate()}일 (${nextPeriodDayName}요일, ${cycleDays}일 주기)</strong>입니다.</p>`,
@@ -148,7 +148,7 @@ const Ovulation = () => {
             <div className={styles.ymd}>
               {unknownCycle ? (
                 <div className={styles.ymd}>
-                  <label className={styles.anthor}>그전 생리 시작일을 입력해 주세요.</label>
+                  <label className={styles.anthor}>그전 생리 시작일을 입력해 주세요</label>
                   <div className={styles.group}>
                     <select
                       id="ovu-before-year"
@@ -230,6 +230,9 @@ const Ovulation = () => {
               <button type="button" onClick={handleCalculate}>
                 <span>계산</span>
               </button>
+            </div>
+            <div className={styles.notice}>
+              <p>* 계산결과는 컨디션과 건강 상태, 환경 차이로 결과가 달라질 수 있습니다.</p>
             </div>
           </div>
         </div>

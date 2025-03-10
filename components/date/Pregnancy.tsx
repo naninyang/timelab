@@ -123,6 +123,10 @@ export default function Pregnancy() {
                 <span>계산</span>
               </button>
             </div>
+            <div className={styles.notice}>
+              <p>* 계산결과는 Naegele’s rule에 근거하여 계산된 결과입니다.</p>
+              <p>* 임부의 컨디션과 건강 상태, 환경 차이로 출산일이 달라질 수 있습니다.</p>
+            </div>
           </div>
         </div>
         {result && (
