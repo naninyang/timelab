@@ -91,148 +91,150 @@ const Ovulation = () => {
     <section
       className={`${styles.section} ${styles['section-ovulation']} ${styles['section-half']} ${styles['section-anthor']} ${styles['section-female']}`}
     >
-      <h2>배란일 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <label htmlFor="ovu-after-year" className={styles.anthor}>
-            최근 생리 시작일을 입력해 주세요
-          </label>
-          <div className={styles.diff}>
-            <div className={styles.group}>
-              <select
-                id="ovu-after-year"
-                value={selectedLastPeriod.year}
-                onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, year: Number(e.target.value) })}
-              >
-                {lastPeriodYears.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="ovu-after-year">년</label>
+      <div className={styles.module}>
+        <h2>배란일 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <label htmlFor="ovu-after-year" className={styles.anthor}>
+              최근 생리 시작일을 입력해 주세요
+            </label>
+            <div className={styles.ymd}>
+              <div className={styles.group}>
+                <select
+                  id="ovu-after-year"
+                  value={selectedLastPeriod.year}
+                  onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, year: Number(e.target.value) })}
+                >
+                  {lastPeriodYears.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="ovu-after-year">년</label>
+              </div>
+              <div className={styles.group}>
+                <select
+                  id="ovu-after-month"
+                  value={selectedLastPeriod.month}
+                  onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, month: Number(e.target.value) })}
+                >
+                  {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="ovu-after-month">월</label>
+              </div>
+              <div className={styles.group}>
+                <select
+                  id="ovu-after-day"
+                  value={selectedLastPeriod.day}
+                  onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, day: Number(e.target.value) })}
+                >
+                  {Array.from(
+                    { length: getDaysInMonth(selectedLastPeriod.year, selectedLastPeriod.month) },
+                    (_, i) => i + 1,
+                  ).map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="ovu-after-day">일</label>
+              </div>
             </div>
-            <div className={styles.group}>
-              <select
-                id="ovu-after-month"
-                value={selectedLastPeriod.month}
-                onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, month: Number(e.target.value) })}
-              >
-                {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="ovu-after-month">월</label>
-            </div>
-            <div className={styles.group}>
-              <select
-                id="ovu-after-day"
-                value={selectedLastPeriod.day}
-                onChange={(e) => setSelectedLastPeriod({ ...selectedLastPeriod, day: Number(e.target.value) })}
-              >
-                {Array.from(
-                  { length: getDaysInMonth(selectedLastPeriod.year, selectedLastPeriod.month) },
-                  (_, i) => i + 1,
-                ).map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="ovu-after-day">일</label>
-            </div>
-          </div>
-          <div className={styles.diff}>
-            <div className={styles.checkbox}>
-              <input id="cycle" type="checkbox" checked={unknownCycle} onChange={handleUnknownCycleChange} />
+            <div className={styles.ymd}>
               {unknownCycle ? (
-                <div className={styles.checked}>
-                  <Checked />
+                <div className={styles.ymd}>
+                  <label className={styles.anthor}>그전 생리 시작일을 입력해 주세요.</label>
+                  <div className={styles.group}>
+                    <select
+                      id="ovu-before-year"
+                      value={selectedPrevPeriod.year}
+                      onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, year: Number(e.target.value) })}
+                    >
+                      {prevPeriodYears.map((year) => (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="ovu-before-year">년</label>
+                  </div>
+                  <div className={styles.group}>
+                    <select
+                      id="ovu-before-month"
+                      value={selectedPrevPeriod.month}
+                      onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, month: Number(e.target.value) })}
+                    >
+                      {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="ovu-before-month">월</label>
+                  </div>
+                  <div className={styles.group}>
+                    <select
+                      id="ovu-before-day"
+                      value={selectedPrevPeriod.day}
+                      onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, day: Number(e.target.value) })}
+                    >
+                      {Array.from(
+                        { length: getDaysInMonth(selectedPrevPeriod.year, selectedPrevPeriod.month) },
+                        (_, i) => i + 1,
+                      ).map((d) => (
+                        <option key={d} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="ovu-before-day">일</label>
+                  </div>
                 </div>
               ) : (
-                <div className={styles.unchecked}>
-                  <Unchecked />
+                <div className={styles.ymd}>
+                  <label htmlFor="ovu-term" className={styles.anthor}>
+                    월경 주기
+                  </label>
+                  <div className={styles.group}>
+                    <select id="ovu-term" value={cycleLength} onChange={(e) => setCycleLength(Number(e.target.value))}>
+                      {Array.from({ length: 21 }, (_, i) => i + 20).map((c) => (
+                        <option key={c} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="ovu-term">일</label>
+                  </div>
                 </div>
               )}
-              <label htmlFor="cycle">주기 모름</label>
+              <div className={styles.checkbox}>
+                <input id="cycle" type="checkbox" checked={unknownCycle} onChange={handleUnknownCycleChange} />
+                {unknownCycle ? (
+                  <div className={styles.checked}>
+                    <Checked />
+                  </div>
+                ) : (
+                  <div className={styles.unchecked}>
+                    <Unchecked />
+                  </div>
+                )}
+                <label htmlFor="cycle">주기 모름</label>
+              </div>
             </div>
-            {unknownCycle ? (
-              <div className={styles.diff}>
-                <label className={styles.anthor}>그전 생리 시작일을 입력해 주세요.</label>
-                <div className={styles.group}>
-                  <select
-                    id="ovu-before-year"
-                    value={selectedPrevPeriod.year}
-                    onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, year: Number(e.target.value) })}
-                  >
-                    {prevPeriodYears.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                  <label htmlFor="ovu-before-year">년</label>
-                </div>
-                <div className={styles.group}>
-                  <select
-                    id="ovu-before-month"
-                    value={selectedPrevPeriod.month}
-                    onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, month: Number(e.target.value) })}
-                  >
-                    {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                      <option key={m} value={m}>
-                        {m}
-                      </option>
-                    ))}
-                  </select>
-                  <label htmlFor="ovu-before-month">월</label>
-                </div>
-                <div className={styles.group}>
-                  <select
-                    id="ovu-before-day"
-                    value={selectedPrevPeriod.day}
-                    onChange={(e) => setSelectedPrevPeriod({ ...selectedPrevPeriod, day: Number(e.target.value) })}
-                  >
-                    {Array.from(
-                      { length: getDaysInMonth(selectedPrevPeriod.year, selectedPrevPeriod.month) },
-                      (_, i) => i + 1,
-                    ).map((d) => (
-                      <option key={d} value={d}>
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                  <label htmlFor="ovu-before-day">일</label>
-                </div>
-              </div>
-            ) : (
-              <div className={styles.diff}>
-                <label htmlFor="ovu-term" className={styles.anthor}>
-                  월경 주기
-                </label>
-                <div className={styles.group}>
-                  <select id="ovu-term" value={cycleLength} onChange={(e) => setCycleLength(Number(e.target.value))}>
-                    {Array.from({ length: 21 }, (_, i) => i + 20).map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
-                  <label htmlFor="ovu-term">일</label>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={handleCalculate}>
-              <span>계산</span>
-            </button>
+            <div className={styles.submit}>
+              <button type="button" onClick={handleCalculate}>
+                <span>계산</span>
+              </button>
+            </div>
           </div>
         </div>
+        {result && <div className={styles.result} dangerouslySetInnerHTML={{ __html: result }} />}
       </div>
-      {result && <div className={styles.result} dangerouslySetInnerHTML={{ __html: result }} />}
     </section>
   );
 };

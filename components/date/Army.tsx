@@ -49,99 +49,101 @@ export default function Army() {
 
   return (
     <section className={`${styles.section} ${styles['section-army']}`}>
-      <h2>전역일 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <div className={styles.army}>
-            <div className={styles.ymd}>
-              <div className={styles.group}>
-                <label htmlFor="army-start-year">입대일</label>
-                <select id="army-start-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
-                  {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
-                    <option key={y} value={y}>
-                      {y}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="army-start-year">년</label>
+      <div className={styles.module}>
+        <h2>전역일 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <div className={styles.army}>
+              <div className={`${styles.ymd} ${styles.lymd}`}>
+                <div className={styles.group}>
+                  <label htmlFor="army-start-year">입대일</label>
+                  <select id="army-start-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
+                    {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
+                      <option key={y} value={y}>
+                        {y}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="army-start-year">년</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="army-start-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+                    {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="army-start-month">월</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="army-start-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
+                    {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="army-start-day">일</label>
+                </div>
               </div>
-              <div className={styles.group}>
-                <select id="army-start-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                    <option key={m} value={m}>
-                      {m}
+              <div className={styles.select}>
+                <select value={serviceType} onChange={(e) => setServiceType(e.target.value)}>
+                  {Object.keys(SERVICE_PERIODS).map((type) => (
+                    <option key={type} value={type}>
+                      {type}
                     </option>
                   ))}
                 </select>
-                <label htmlFor="army-start-month">월</label>
-              </div>
-              <div className={styles.group}>
-                <select id="army-start-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
-                  {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="army-start-day">일</label>
               </div>
             </div>
-            <div className={styles.select}>
-              <select value={serviceType} onChange={(e) => setServiceType(e.target.value)}>
-                {Object.keys(SERVICE_PERIODS).map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
+            <div className={styles.submit}>
+              <button type="button" onClick={handleCalculate}>
+                <span>계산</span>
+              </button>
             </div>
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={handleCalculate}>
-              <span>계산</span>
-            </button>
           </div>
         </div>
+        {calculatedData && (
+          <div className={styles['result-container']}>
+            {today.isAfter(calculatedData.dischargeDate) ? (
+              <p>이미 전역/해제소집 되었습니다.</p>
+            ) : (
+              <>
+                <dl>
+                  <div>
+                    <dt>전역일</dt>
+                    <dd>{calculatedData.dischargeDate.format('YYYY년 M월 D일')}</dd>
+                  </div>
+                  <div>
+                    <dt>총 복무일</dt>
+                    <dd>
+                      {SERVICE_PERIODS[serviceType]}일
+                      {calculatedData.todayDiff >= 0 && ` (${calculatedData.todayDiff}일 복무 중)`}
+                    </dd>
+                  </div>
+                </dl>
+                <div className={styles.progress}>
+                  <div
+                    className={styles['progress-bar']}
+                    role="progressbar"
+                    aria-label="이벤트 도달 상태"
+                    aria-valuenow={calculatedData.progress}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                  >
+                    <div className={styles.progressing} style={{ width: `${calculatedData.progress}%` }}></div>
+                  </div>
+                  <p>
+                    D-
+                    {calculatedData.dischargeDate.diff(today, 'day')} ({calculatedData.progress}% 진행)
+                  </p>
+                </div>
+              </>
+            )}
+          </div>
+        )}
       </div>
-      {calculatedData && (
-        <div className={styles['result-container']}>
-          {today.isAfter(calculatedData.dischargeDate) ? (
-            <p>이미 전역/해제소집 되었습니다.</p>
-          ) : (
-            <>
-              <dl>
-                <div>
-                  <dt>전역일</dt>
-                  <dd>{calculatedData.dischargeDate.format('YYYY년 M월 D일')}</dd>
-                </div>
-                <div>
-                  <dt>총 복무일</dt>
-                  <dd>
-                    {SERVICE_PERIODS[serviceType]}일
-                    {calculatedData.todayDiff >= 0 && ` (${calculatedData.todayDiff}일 복무 중)`}
-                  </dd>
-                </div>
-              </dl>
-              <div className={styles.progress}>
-                <div
-                  className={styles['progress-bar']}
-                  role="progressbar"
-                  aria-label="이벤트 도달 상태"
-                  aria-valuenow={calculatedData.progress}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                >
-                  <div className={styles.progressing} style={{ width: `${calculatedData.progress}%` }}></div>
-                </div>
-                <p>
-                  D-
-                  {calculatedData.dischargeDate.diff(today, 'day')} ({calculatedData.progress}% 진행)
-                </p>
-              </div>
-            </>
-          )}
-        </div>
-      )}
     </section>
   );
 }

@@ -84,67 +84,68 @@ export default function EventAnniversary() {
 
   return (
     <section className={`${styles.section} ${styles['section-event-anniversary']} ${styles['section-half']}`}>
-      <h2>기념일 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <div className={`${styles.group} ${styles['event-name']}`}>
-            <label htmlFor="anniversary-name">이벤트</label>
-            <div className={styles.eventName}>
-              <input
-                id="anniversary-name"
-                type="text"
-                placeholder="기념일 이름 입력"
-                value={eventName}
-                onChange={(e) => setEventName(e.target.value)}
-              />
+      <div className={styles.module}>
+        <h2>기념일 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <div className={`${styles.group} ${styles['event-name']}`}>
+              <label htmlFor="anniversary-name">이벤트</label>
+              <div className={styles.eventName}>
+                <input
+                  id="anniversary-name"
+                  type="text"
+                  placeholder="기념일 이름 입력"
+                  value={eventName}
+                  onChange={(e) => setEventName(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.diff}>
-            <div className={styles.group}>
-              <label htmlFor="anniversary-year">기념일</label>
-              <select id="anniversary-year" value={year} onChange={(e) => setYear(e.target.value)}>
-                {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="anniversary-year">년</label>
+            <div className={`${styles.ymd} ${styles.lymd}`}>
+              <div className={styles.group}>
+                <label htmlFor="anniversary-year">기념일</label>
+                <select id="anniversary-year" value={year} onChange={(e) => setYear(e.target.value)}>
+                  {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="anniversary-year">년</label>
+              </div>
+              <div className={styles.group}>
+                <select id="anniversary-month" value={month} onChange={(e) => setMonth(e.target.value)}>
+                  {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="anniversary-month">월</label>
+              </div>
+              <div className={styles.group}>
+                <select id="anniversary-day" value={day} onChange={(e) => setDay(e.target.value)}>
+                  {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="anniversary-day">일</label>
+              </div>
             </div>
-            <div className={styles.group}>
-              <select id="anniversary-month" value={month} onChange={(e) => setMonth(e.target.value)}>
-                {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="anniversary-month">월</label>
+            <div className={styles.submit}>
+              <button type="button" onClick={calculateDate}>
+                <span>계산</span>
+              </button>
             </div>
-            <div className={styles.group}>
-              <select id="anniversary-day" value={day} onChange={(e) => setDay(e.target.value)}>
-                {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="anniversary-day">일</label>
-            </div>
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={calculateDate}>
-              <span>계산</span>
-            </button>
           </div>
         </div>
+        {result && (
+          <div className={styles.result}>
+            <p dangerouslySetInnerHTML={{ __html: result }} />
+          </div>
+        )}
       </div>
-
-      {result && (
-        <div className={styles.result}>
-          <p dangerouslySetInnerHTML={{ __html: result }} />
-        </div>
-      )}
     </section>
   );
 }

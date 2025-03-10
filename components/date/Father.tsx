@@ -51,80 +51,84 @@ export default function Father() {
 
   return (
     <section className={`${styles.section} ${styles['section-half']}`}>
-      <h2>이전/이후 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <div className={styles.ymd}>
-            <div className={styles.group}>
-              <select
-                id="father-year"
-                className={styles.year}
-                value={year}
-                onChange={(e) => setYear(Number(e.target.value))}
-              >
-                {years.map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="father-year">년</label>
+      <div className={styles.module}>
+        <h2>이전/이후 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <div className={styles.ymd}>
+              <div className={styles.group}>
+                <select
+                  id="father-year"
+                  className={styles.year}
+                  value={year}
+                  onChange={(e) => setYear(Number(e.target.value))}
+                >
+                  {years.map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="father-year">년</label>
+              </div>
+              <div className={styles.group}>
+                <select id="father-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+                  {months.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="father-month">월</label>
+              </div>
+              <div className={styles.group}>
+                <select id="father-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
+                  {days.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="father-day">일</label>
+              </div>
+              <span>기준</span>
             </div>
-            <div className={styles.group}>
-              <select id="father-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
-                {months.map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="father-month">월</label>
-            </div>
-            <div className={styles.group}>
-              <select id="father-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
-                {days.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="father-day">일</label>
-            </div>
-            <span>기준</span>
-          </div>
-          <div className={styles.calc}>
-            <div className={styles.group}>
-              <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
-              <select value={unit} onChange={(e) => setUnit(e.target.value)}>
-                <option value="days">일</option>
-                <option value="weeks">주</option>
-                <option value="months">개월</option>
-                <option value="years">년</option>
+            <div className={styles.ymd}>
+              <div className={`${styles.group} ${styles['group-mix']}`}>
+                <div className={styles.text}>
+                  <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
+                </div>
+                <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+                  <option value="days">일</option>
+                  <option value="weeks">주</option>
+                  <option value="months">개월</option>
+                  <option value="years">년</option>
+                </select>
+              </div>
+              <select value={direction} onChange={(e) => setDirection(e.target.value)}>
+                <option value="after">이후</option>
+                <option value="before">이전</option>
               </select>
             </div>
-            <select value={direction} onChange={(e) => setDirection(e.target.value)}>
-              <option value="after">이후</option>
-              <option value="before">이전</option>
-            </select>
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={calculateDate}>
-              <span>계산</span>
-            </button>
-          </div>
-          <div className={styles.notice}>
-            <p>* 1개월은 30일로 계산됩니다.</p>
+            <div className={styles.submit}>
+              <button type="button" onClick={calculateDate}>
+                <span>계산</span>
+              </button>
+            </div>
+            <div className={styles.notice}>
+              <p>* 1개월은 30일로 계산됩니다.</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {calculatedDate && (
-        <div className={styles.result}>
-          <p>
-            <strong>{calculatedDate}</strong> 입니다.
-          </p>
-        </div>
-      )}
+        {calculatedDate && (
+          <div className={styles.result}>
+            <p>
+              <strong>{calculatedDate}</strong> 입니다.
+            </p>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

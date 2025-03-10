@@ -79,84 +79,86 @@ export default function Pregnancy() {
 
   return (
     <section className={`${styles.section} ${styles['section-half']} ${styles['section-female']}`}>
-      <h2>출산예정일 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <label htmlFor="pre-year" className={styles.anthor}>
-            마지막 월경 시작일을 입력해 주세요
-          </label>
-          <div className={styles.diff}>
-            <div className={styles.group}>
-              <select id="pre-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
-                {Array.from({ length: today.year - minDate.year + 1 }, (_, i) => minDate.year + i).map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="pre-year">년</label>
+      <div className={styles.module}>
+        <h2>출산예정일 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <label htmlFor="pre-year" className={styles.anthor}>
+              마지막 월경 시작일을 입력해 주세요
+            </label>
+            <div className={styles.ymd}>
+              <div className={styles.group}>
+                <select id="pre-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
+                  {Array.from({ length: today.year - minDate.year + 1 }, (_, i) => minDate.year + i).map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="pre-year">년</label>
+              </div>
+              <div className={styles.group}>
+                <select id="pre-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+                  {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="pre-month">월</label>
+              </div>
+              <div className={styles.group}>
+                <select id="pre-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
+                  {Array.from({ length: new Date(year, month, 0).getDate() }, (_, i) => i + 1).map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="pre-day">일</label>
+              </div>
             </div>
-            <div className={styles.group}>
-              <select id="pre-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
-                {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="pre-month">월</label>
+            <div className={styles.submit}>
+              <button type="button" onClick={handleCalculate}>
+                <span>계산</span>
+              </button>
             </div>
-            <div className={styles.group}>
-              <select id="pre-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
-                {Array.from({ length: new Date(year, month, 0).getDate() }, (_, i) => i + 1).map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="pre-day">일</label>
-            </div>
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={handleCalculate}>
-              <span>계산</span>
-            </button>
           </div>
         </div>
+        {result && (
+          <div className={styles['result-container']}>
+            <dl>
+              <div>
+                <dt>임신주수</dt>
+                <dd>
+                  {result.weeks}주 {result.days}일째
+                </dd>
+              </div>
+              <div>
+                <dt>출산예정</dt>
+                <dd>
+                  {result.dueYear}년 {result.dueMonth}월 {result.dueDay}일 ({result.dueWeekDay})
+                </dd>
+              </div>
+            </dl>
+            <div className={styles.progress}>
+              <div
+                className={styles['progress-bar']}
+                role="progressbar"
+                aria-label="이벤트 도달 상태"
+                aria-valuenow={Number(result.progressPercent)}
+                aria-valuemin={0}
+                aria-valuemax={100}
+              >
+                <div className={styles.progressing} style={{ width: `${result.progressPercent}%` }} />
+              </div>
+              <p>
+                D-{result.remainingDays} ({result.progressPercent}% 진행)
+              </p>
+            </div>
+          </div>
+        )}
       </div>
-      {result && (
-        <div className={styles['result-container']}>
-          <dl>
-            <div>
-              <dt>임신주수</dt>
-              <dd>
-                {result.weeks}주 {result.days}일째
-              </dd>
-            </div>
-            <div>
-              <dt>출산예정</dt>
-              <dd>
-                {result.dueYear}년 {result.dueMonth}월 {result.dueDay}일 ({result.dueWeekDay})
-              </dd>
-            </div>
-          </dl>
-          <div className={styles.progress}>
-            <div
-              className={styles['progress-bar']}
-              role="progressbar"
-              aria-label="이벤트 도달 상태"
-              aria-valuenow={Number(result.progressPercent)}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              <div className={styles.progressing} style={{ width: `${result.progressPercent}%` }} />
-            </div>
-            <p>
-              D-{result.remainingDays} ({result.progressPercent}% 진행)
-            </p>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

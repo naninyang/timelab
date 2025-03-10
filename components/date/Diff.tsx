@@ -84,88 +84,93 @@ export default function Diff() {
 
   return (
     <section className={`${styles.section} ${styles['section-half']} ${styles['section-anthor']}`}>
-      <h2>날짜 차이 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <div className={styles.diff}>
-            <div className={styles.group}>
-              <label htmlFor="diff-start-year">시작일</label>
-              <select id="diff-start-year" value={startYear} onChange={(e) => setStartYear(Number(e.target.value))}>
-                {years.map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="diff-start-year">년</label>
+      <div className={styles.module}>
+        <h2>날짜 차이 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <div className={`${styles.ymd} ${styles.lymd}`}>
+              <div className={styles.group}>
+                <label htmlFor="diff-start-year">시작일</label>
+                <select id="diff-start-year" value={startYear} onChange={(e) => setStartYear(Number(e.target.value))}>
+                  {years.map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="diff-start-year">년</label>
+              </div>
+              <div className={styles.group}>
+                <select
+                  id="diff-start-month"
+                  value={startMonth}
+                  onChange={(e) => setStartMonth(Number(e.target.value))}
+                >
+                  {months.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="diff-start-month">월</label>
+              </div>
+              <div className={styles.group}>
+                <select id="diff-start-day" value={startDay} onChange={(e) => setStartDay(Number(e.target.value))}>
+                  {startDays.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="diff-start-month">일</label>
+              </div>
             </div>
-            <div className={styles.group}>
-              <select id="diff-start-month" value={startMonth} onChange={(e) => setStartMonth(Number(e.target.value))}>
-                {months.map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="diff-start-month">월</label>
+            <div className={`${styles.ymd} ${styles.lymd}`}>
+              <div className={styles.group}>
+                <label htmlFor="diff-end-year">종료일</label>
+                <select id="diff-end-year" value={endYear} onChange={(e) => setEndYear(Number(e.target.value))}>
+                  {years.map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="diff-end-year">년</label>
+              </div>
+              <div className={styles.group}>
+                <select id="diff-end-month" value={endMonth} onChange={(e) => setEndMonth(Number(e.target.value))}>
+                  {months.map((m) => (
+                    <option key={m} value={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="diff-end-month">월</label>
+              </div>
+              <div className={styles.group}>
+                <select id="diff-end-day" value={endDay} onChange={(e) => setEndDay(Number(e.target.value))}>
+                  {endDays.map((d) => (
+                    <option key={d} value={d}>
+                      {d}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="diff-end-day">일</label>
+              </div>
             </div>
-            <div className={styles.group}>
-              <select id="diff-start-day" value={startDay} onChange={(e) => setStartDay(Number(e.target.value))}>
-                {startDays.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="diff-start-month">일</label>
+            <div className={styles.submit}>
+              <button type="button" onClick={calculateDifference}>
+                <span>계산</span>
+              </button>
             </div>
-          </div>
-          <div className={styles.diff}>
-            <div className={styles.group}>
-              <label htmlFor="diff-end-year">종료일</label>
-              <select id="diff-end-year" value={endYear} onChange={(e) => setEndYear(Number(e.target.value))}>
-                {years.map((y) => (
-                  <option key={y} value={y}>
-                    {y}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="diff-end-year">년</label>
+            <div className={styles.notice}>
+              <p>* 시작일은 카운팅되지 않습니다.</p>
+              <p>* 1개월은 30일로 계산됩니다.</p>
             </div>
-            <div className={styles.group}>
-              <select id="diff-end-month" value={endMonth} onChange={(e) => setEndMonth(Number(e.target.value))}>
-                {months.map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="diff-end-month">월</label>
-            </div>
-            <div className={styles.group}>
-              <select id="diff-end-day" value={endDay} onChange={(e) => setEndDay(Number(e.target.value))}>
-                {endDays.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="diff-end-day">일</label>
-            </div>
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={calculateDifference}>
-              <span>계산</span>
-            </button>
-          </div>
-          <div className={styles.notice}>
-            <p>* 시작일은 카운팅되지 않습니다.</p>
-            <p>* 1개월은 30일로 계산됩니다.</p>
           </div>
         </div>
+        <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />
       </div>
-
-      <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />
     </section>
   );
 }

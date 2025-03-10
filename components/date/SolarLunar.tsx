@@ -58,64 +58,66 @@ export default function SolarLunar() {
 
   return (
     <section className={`${styles.section} ${styles['section-solu']}`}>
-      <h2>양력/음력 변환</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <div className={styles.solu}>
-            <div className={styles.ymd}>
-              <div className={styles.group}>
-                <select id="solu-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
-                  {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
-                    <option key={y} value={y}>
-                      {y}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="solu-year">년</label>
+      <div className={styles.module}>
+        <h2>양력/음력 변환</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <div className={styles.solu}>
+              <div className={styles.ymd}>
+                <div className={styles.group}>
+                  <select id="solu-year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
+                    {Array.from({ length: maxYear - minYear + 1 }, (_, i) => minYear + i).map((y) => (
+                      <option key={y} value={y}>
+                        {y}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="solu-year">년</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="solu-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
+                    {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="solu-month">월</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="solu-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
+                    {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="solu-day">일</label>
+                </div>
               </div>
-              <div className={styles.group}>
-                <select id="solu-month" value={month} onChange={(e) => setMonth(Number(e.target.value))}>
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                    <option key={m} value={m}>
-                      {m}
-                    </option>
-                  ))}
+              <div className={styles.select}>
+                <select
+                  value={conversionType}
+                  onChange={(e) => setConversionType(e.target.value as 'solarToLunar' | 'lunarToSolar')}
+                >
+                  <option value="solarToLunar">양력→음력</option>
+                  <option value="lunarToSolar">음력→양력</option>
                 </select>
-                <label htmlFor="solu-month">월</label>
-              </div>
-              <div className={styles.group}>
-                <select id="solu-day" value={day} onChange={(e) => setDay(Number(e.target.value))}>
-                  {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="solu-day">일</label>
               </div>
             </div>
-            <div className={styles.select}>
-              <select
-                value={conversionType}
-                onChange={(e) => setConversionType(e.target.value as 'solarToLunar' | 'lunarToSolar')}
-              >
-                <option value="solarToLunar">양력→음력</option>
-                <option value="lunarToSolar">음력→양력</option>
-              </select>
+            <div className={styles.submit}>
+              <button type="button" onClick={handleConvert}>
+                <span>변환</span>
+              </button>
             </div>
-          </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={handleConvert}>
-              <span>변환</span>
-            </button>
-          </div>
-          <div className={styles.notice}>
-            <p>* 음력→양력 변환시 윤달과 평달 중 평달만 표시됩니다.</p>
+            <div className={styles.notice}>
+              <p>* 음력→양력 변환시 윤달과 평달 중 평달만 표시됩니다.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.result}>
-        <ul dangerouslySetInnerHTML={{ __html: result }} />
+        <div className={styles.result}>
+          <ul dangerouslySetInnerHTML={{ __html: result }} />
+        </div>
       </div>
     </section>
   );

@@ -65,11 +65,19 @@ export default function EventPercentage() {
     const progressPercent = ((elapsedDays / totalDays) * 100).toFixed(2);
     const remainingPercent = ((remainingDays / totalDays) * 100).toFixed(2);
 
-    setResult(
-      `<p>${eventWithPostfix} <strong>${progressPercent}% 진행중</strong>. <em>(${formatDuration(elapsedDays)}째)</em></p>` +
-        `<p>종료까지 <strong>${remainingPercent}% 남음</strong>. <em>(${formatDuration(remainingDays)} 남음)</em></p>`,
-    );
-    setProgress(Number(progressPercent));
+    if (Number(progressPercent) > 0) {
+      setResult(
+        `<p>${eventWithPostfix} <strong>${progressPercent}% 진행중</strong>. <em>(${formatDuration(elapsedDays)}째)</em></p>` +
+          `<p>종료까지 <strong>${remainingPercent}% 남음</strong>. <em>(${formatDuration(remainingDays)} 남음)</em></p>`,
+      );
+      setProgress(Number(progressPercent));
+    } else {
+      setResult(
+        `<p>${eventWithPostfix} <strong>${progressPercent}% 진행중</strong>. <em>(0일째)</em></p>` +
+          `<p>종료까지 <strong>${remainingPercent}% 남음</strong>. <em>(${formatDuration(remainingDays)} 남음)</em></p>`,
+      );
+      setProgress(Number(progressPercent));
+    }
   }
 
   function formatDuration(days: number): string {
@@ -90,123 +98,129 @@ export default function EventPercentage() {
 
   return (
     <section className={`${styles.section} ${styles['section-event-percentage']}`}>
-      <h2>이벤트 퍼센트 계산</h2>
-      <div className={styles.form}>
-        <div className={styles.fieldset}>
-          <div className={`${styles.group} ${styles['event-name']}`}>
-            <label htmlFor="event-name">이벤트</label>
-            <div className={styles.eventName}>
-              <input
-                id="event-name"
-                type="text"
-                placeholder="이벤트 이름 입력"
-                value={eventName}
-                onChange={(e) => setEventName(e.target.value)}
-              />
+      <div className={styles.module}>
+        <h2>이벤트 퍼센트 계산</h2>
+        <div className={styles.form}>
+          <div className={styles.fieldset}>
+            <div className={`${styles.group} ${styles['event-name']}`}>
+              <label htmlFor="event-name">이벤트</label>
+              <div className={styles.eventName}>
+                <input
+                  id="event-name"
+                  type="text"
+                  placeholder="이벤트 이름 입력"
+                  value={eventName}
+                  onChange={(e) => setEventName(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className={styles['event-container']}>
+              <div className={`${styles.ymd} ${styles.lymd}`}>
+                <div className={styles.group}>
+                  <label htmlFor="event-start-year">시작일</label>
+                  <select
+                    id="event-start-year"
+                    value={startYear}
+                    onChange={(e) => setStartYear(Number(e.target.value))}
+                  >
+                    {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 5 + i).map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="event-start-year">년</label>
+                </div>
+                <div className={styles.group}>
+                  <select
+                    id="event-start-month"
+                    value={startMonth}
+                    onChange={(e) => setStartMonth(Number(e.target.value))}
+                  >
+                    {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="event-start-month">월</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="event-start-day" value={startDay} onChange={(e) => setStartDay(Number(e.target.value))}>
+                    {Array.from({ length: getDaysInMonth(startYear, startMonth) }, (_, i) => i + 1).map((day) => (
+                      <option key={day} value={day}>
+                        {day}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="event-start-day">일</label>
+                </div>
+              </div>
+              <div className={`${styles.ymd} ${styles.lymd}`}>
+                <div className={styles.group}>
+                  <label htmlFor="event-end-year">종료일</label>
+                  <select id="event-end-year" value={endYear} onChange={(e) => setEndYear(Number(e.target.value))}>
+                    {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 5 + i).map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="event-end-year">년</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="event-end-month" value={endMonth} onChange={(e) => setEndMonth(Number(e.target.value))}>
+                    {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="event-end-month">월</label>
+                </div>
+                <div className={styles.group}>
+                  <select id="event-end-day" value={endDay} onChange={(e) => setEndDay(Number(e.target.value))}>
+                    {Array.from({ length: getDaysInMonth(endYear, endMonth) }, (_, i) => i + 1).map((day) => (
+                      <option key={day} value={day}>
+                        {day}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="event-end-day">일</label>
+                </div>
+              </div>
+            </div>
+            <div className={styles.submit}>
+              <button type="button" onClick={calculateEventProgress}>
+                <span>계산</span>
+              </button>
             </div>
           </div>
-          <div className={styles['event-container']}>
-            <div className={styles.diff}>
-              <div className={styles.group}>
-                <label htmlFor="event-start-year">시작일</label>
-                <select id="event-start-year" value={startYear} onChange={(e) => setStartYear(Number(e.target.value))}>
-                  {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 5 + i).map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="event-start-year">년</label>
-              </div>
-              <div className={styles.group}>
-                <select
-                  id="event-start-month"
-                  value={startMonth}
-                  onChange={(e) => setStartMonth(Number(e.target.value))}
+        </div>
+        {result && (
+          <div className={styles['result-container']}>
+            <div
+              className={`${styles.result} ${styles['event-percentage-result']}`}
+              dangerouslySetInnerHTML={{ __html: result }}
+            />
+            {progress !== null && (
+              <div className={styles.progress}>
+                <div
+                  className={styles['progress-bar']}
+                  role="progressbar"
+                  aria-label="이벤트 도달 상태"
+                  aria-valuenow={progress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
                 >
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                    <option key={month} value={month}>
-                      {month}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="event-start-month">월</label>
+                  <div className={styles.progressing} style={{ width: `${progress}%` }} />
+                </div>
+                <p>{progress}% 진행</p>
               </div>
-              <div className={styles.group}>
-                <select id="event-start-day" value={startDay} onChange={(e) => setStartDay(Number(e.target.value))}>
-                  {Array.from({ length: getDaysInMonth(startYear, startMonth) }, (_, i) => i + 1).map((day) => (
-                    <option key={day} value={day}>
-                      {day}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="event-start-day">일</label>
-              </div>
-            </div>
-            <div className={styles.diff}>
-              <div className={styles.group}>
-                <label htmlFor="event-end-year">종료일</label>
-                <select id="event-end-year" value={endYear} onChange={(e) => setEndYear(Number(e.target.value))}>
-                  {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 5 + i).map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="event-end-year">년</label>
-              </div>
-              <div className={styles.group}>
-                <select id="event-end-month" value={endMonth} onChange={(e) => setEndMonth(Number(e.target.value))}>
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                    <option key={month} value={month}>
-                      {month}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="event-end-month">월</label>
-              </div>
-              <div className={styles.group}>
-                <select id="event-end-day" value={endDay} onChange={(e) => setEndDay(Number(e.target.value))}>
-                  {Array.from({ length: getDaysInMonth(endYear, endMonth) }, (_, i) => i + 1).map((day) => (
-                    <option key={day} value={day}>
-                      {day}
-                    </option>
-                  ))}
-                </select>
-                <label htmlFor="event-end-day">일</label>
-              </div>
-            </div>
+            )}
           </div>
-          <div className={styles.submit}>
-            <button type="button" onClick={calculateEventProgress}>
-              <span>계산</span>
-            </button>
-          </div>
-        </div>
+        )}
       </div>
-      {result && (
-        <div className={styles['result-container']}>
-          <div
-            className={`${styles.result} ${styles['event-percentage-result']}`}
-            dangerouslySetInnerHTML={{ __html: result }}
-          />
-          {progress !== null && (
-            <div className={styles.progress}>
-              <div
-                className={styles['progress-bar']}
-                role="progressbar"
-                aria-label="이벤트 도달 상태"
-                aria-valuenow={progress}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              >
-                <div className={styles.progressing} style={{ width: `${progress}%` }} />
-              </div>
-              <p>{progress}% 진행</p>
-            </div>
-          )}
-        </div>
-      )}
     </section>
   );
 }
