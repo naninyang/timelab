@@ -1,4 +1,5 @@
 import Seo from '@/components/Seo';
+import Age from '@/components/date/Age';
 import Army from '@/components/date/Army';
 import Dday from '@/components/date/Dday';
 import Diff from '@/components/date/Diff';
@@ -24,6 +25,7 @@ export default function Home() {
         <EventAnniversary />
         <Supported />
         <SolarLunar />
+        <Age />
         <Army />
         <Pregnancy />
         <Ovulation />
