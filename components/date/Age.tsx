@@ -137,6 +137,9 @@ export default function Age() {
                 <span>계산</span>
               </button>
             </div>
+            <div className={styles.notice}>
+              <p>* 띠는 입춘 기준으로 달라집니다.</p>
+            </div>
           </div>
         </div>
         <div
