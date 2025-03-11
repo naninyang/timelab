@@ -657,16 +657,16 @@ section.section
       transition: background 0.3s ease-in-out, transform 0.2s
       position: relative
       overflow: hidden
-      background-color: ds.$hex-white
       display: flex
       justify-content: center
       align-items: center
-      width: 100%
+      background-color: ds.$hex-white
       border: ds.rem(2) solid
       border-radius: ds.rem(3)
-      height: ds.rem(37)
-      font-size: ds.rem(18)
-      @include ds.fw(900)
+      width: 100%
+      height: ds.rem(52)
+      font-size: ds.rem(16)
+      @include ds.fw(500)
       color: ds.$hex-accent-light
 
       &::before
@@ -700,6 +700,7 @@ section.section
       span
         position: relative
         z-index: 1
+        font-size: ds.rem(16)
 
       body[data-theme='dark'] &
         background-color: ds.$hex-dark
