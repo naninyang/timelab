@@ -53,7 +53,7 @@ export default function Age() {
     const koreanAge = refYear - birthYear + 1;
 
     setResult(
-      `<p><span>만 <strong>${age}세 (${zodiac}띠)</strong>,</span> <span>연나이 <strong>${koreanAge}세</strong>입니다.</span></p>`,
+      `<p><span>만 <strong>${age}세 (${zodiac}띠)</strong>,</span> <span>연나이 <strong>${koreanAge - 1}세</strong>입니다.</span></p>`,
     );
   };
 
