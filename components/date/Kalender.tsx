@@ -78,6 +78,13 @@ export default function Kalender() {
             fetchEvents(start, end);
           }}
         />
+        <div className={styles.notice}>
+          <p>
+            * 대한민국 디지털 달력은 대한민국의 역사적, 사회적, 문화적 사건을 기록하고 제공하는 목적으로 운영됩니다.
+          </p>
+          <p>* 포함된 일정은 공식적으로 보도되거나 사회적으로 주목받은 사건들을 기반으로 합니다.</p>
+          <p>* 특정 정치적 입장을 지지하거나 반대하는 것이 아니며, 단순히 정보 제공의 목적으로 등록됩니다.</p>
+        </div>
       </div>
     </section>
   );
