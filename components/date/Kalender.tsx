@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -17,24 +17,27 @@ export default function Kalender() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loadedMonths, setLoadedMonths] = useState<string[]>([]);
 
+  const fetchEvents = useCallback(
+    (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
+      const correctedStart = start.startOf('month').format('YYYY-MM-DD');
+      const correctedEnd = end.endOf('month').format('YYYY-MM-DD');
+      const startMonth = start.format('YYYY-MM');
+      if (loadedMonths.includes(startMonth)) return;
+
+      fetch(`/api/calendar?start=${correctedStart}&end=${correctedEnd}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setEvents((prev) => [...prev, ...data.events]);
+          setLoadedMonths((prev) => [...prev, startMonth]);
+        })
+        .catch((error) => console.error('Error fetching calendar events:', error));
+    },
+    [loadedMonths],
+  );
+
   useEffect(() => {
     fetchEvents(dayjs().subtract(1, 'month').startOf('month'), dayjs().add(1, 'month').endOf('month'));
-  }, []);
-
-  const fetchEvents = (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
-    const correctedStart = start.startOf('month').format('YYYY-MM-DD');
-    const correctedEnd = end.endOf('month').format('YYYY-MM-DD');
-    const startMonth = start.format('YYYY-MM');
-    if (loadedMonths.includes(startMonth)) return;
-
-    fetch(`/api/calendar?start=${correctedStart}&end=${correctedEnd}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setEvents((prev) => [...prev, ...data.events]);
-        setLoadedMonths((prev) => [...prev, startMonth]);
-      })
-      .catch((error) => console.error('Error fetching calendar events:', error));
-  };
+  }, [fetchEvents]);
 
   const getEventColor = (eventType: string): string => {
     switch (eventType) {

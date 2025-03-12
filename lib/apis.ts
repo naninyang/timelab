@@ -9,7 +9,7 @@ export async function getCalendarEvents(startDate: string, endDate: string) {
   try {
     let hasMore = true;
     let startCursor: string | undefined = undefined;
-    let allResults: any[] = [];
+    let allResults: QueryDatabaseResponse['results'] = [];
 
     while (hasMore) {
       const response: QueryDatabaseResponse = await notion.databases.query({
