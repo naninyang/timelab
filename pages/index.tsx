@@ -10,6 +10,7 @@ import Ovulation from '@/components/date/Ovulation';
 import Pregnancy from '@/components/date/Pregnancy';
 import SolarLunar from '@/components/date/SolarLunar';
 import Supported from '@/components/date/Supported';
+import Kalender from '@/components/date/Kalender';
 import styles from '@/styles/Home.module.sass';
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
         <Army />
         <Pregnancy />
         <Ovulation />
+        <Kalender />
       </div>
     </main>
   );

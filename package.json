@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@notionhq/client": "^2.2.16",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "holiday-kr": "^0.1.5",

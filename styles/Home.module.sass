@@ -60,7 +60,7 @@ section.section
     gap: ds.rem(13)
 
   @include ds.mq(minLarge)
-    &:last-of-type, &:nth-last-of-type(2)
+    &:last-of-type
       padding-bottom: 0
 
   .module
@@ -73,20 +73,20 @@ section.section
       body[data-theme='dark'] &
         border: ds.rem(2) solid ds.$hex-black
 
-  h2
-    font-size: ds.rem(20)
-    @include ds.fw(500)
+    > h2
+      font-size: ds.rem(20)
+      @include ds.fw(500)
 
-    svg
-      width: auto
-      height: ds.rem(22)
-      aspect-ratio: 117 / 19
+      svg
+        width: auto
+        height: ds.rem(22)
+        aspect-ratio: 117 / 19
 
-      path
-        fill: ds.$hex-dark
+        path
+          fill: ds.$hex-dark
 
-        body[data-theme='dark'] &
-          fill: ds.$hex-white
+          body[data-theme='dark'] &
+            fill: ds.$hex-white
 
   &.section-dday
     @include ds.mq(minLarge)

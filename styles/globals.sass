@@ -115,3 +115,95 @@ main
   display: flex
   flex-direction: column
   min-height: 100vh
+
+.fc
+  &-theme-standard
+    th
+      border-color: transparent
+
+    td
+      border: 1px solid ds.$hex-gray-dark!important
+
+      body[data-theme='dark'] &
+        border-color: ds.$hex-gray-light!important
+
+    .fc-scrollgrid
+      border: 0
+
+  .fc
+    &-toolbar-title
+      font-size: ds.rem(16)
+      font-weight: 500
+
+    &-button
+      background-color: transparent
+      border: 1px solid ds.$hex-gray-dark
+      border-radius: ds.rem(3)
+      padding: ds.rem(2) ds.rem(5)
+      font-size: ds.rem(12)
+      color: ds.$hex-black
+      transition: all 0.2s
+
+      body[data-theme='dark'] &
+        border: 1px solid ds.$hex-gray-light
+        color: ds.$hex-white
+
+      &:disabled
+        background-color: ds.$hex-gray-dark
+        border-color: ds.$hex-gray-dark
+        color: ds.$hex-white
+
+        body[data-theme='dark'] &
+          background-color: ds.$hex-gray-light
+          border-color: ds.$hex-gray-light
+          color: ds.$hex-black
+
+        &:hover, &:focus
+          border-color: ds.$hex-gray-dark
+          background-color: ds.$hex-gray-dark
+
+          body[data-theme='dark'] &
+            border-color: ds.$hex-gray-light
+            background-color: ds.$hex-gray-light
+
+      &:hover
+        background-color: ds.$hex-accent-light
+        border-color: ds.$hex-accent-light
+        color: ds.$hex-white
+
+        body[data-theme='dark'] &
+          background-color: ds.$hex-accent-dark
+          border-color: ds.$hex-accent-dark
+          color: ds.$hex-black
+
+    &-col-header-cell
+      background-color: transparent
+      font-size: ds.rem(12)
+      font-weight: 500
+
+    &-daygrid-day-top
+      font-size: ds.rem(12)
+
+    &-daygrid-event
+      white-space: normal
+
+    &-daygrid-body-unbalanced
+      .fc-daygrid-day-events
+        min-height: 0
+
+    &-day-today
+      background-color: rgba(ds.$hex-accent-light, 0.2) !important
+      border-radius: ds.rem(3)
+
+      body[data-theme='dark'] &
+        background-color: rgba(ds.$hex-accent-dark, 0.2) !important
+
+    &-event
+      border-radius: ds.rem(3)
+      font-size: ds.rem(12)
+      text-align: left
+
+      .fc-event-title
+        overflow: visible
+        overflow-wrap: break-word
+        text-overflow: ellipsis
