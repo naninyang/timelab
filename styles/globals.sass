@@ -210,6 +210,13 @@ main
     &-daygrid-day
       border: 0!important
 
+      &.fc-event-holiday
+        .fc-daygrid-day-number
+          color: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            color: ds.$hex-accent-dark
+
       > div
         ._coffee &
           padding: 0 0 ds.rem(12)
@@ -220,6 +227,13 @@ main
       &:not(.fc-day-today)
         > div
           border: ds.rem(2) transparent!important
+
+    &-day-sun, &-day-sat
+      .fc-col-header-cell-cushion, .fc-daygrid-day-top
+        color: ds.$hex-accent-light
+
+        body[data-theme='dark'] &
+          color: ds.$hex-accent-dark
 
     &-day-today
       background-color: transparent!important
@@ -310,6 +324,7 @@ main
             color: #4A4947
 
     &-daygrid-day-number
+      font-weight: 500
       ._coffee &
         padding: 0 ds.rem(3) ds.rem(5)
 

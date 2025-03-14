@@ -89,6 +89,17 @@ export default function Kalender() {
             const end = dayjs(info.end);
             fetchEvents(start, end);
           }}
+          dayCellClassNames={(arg) => {
+            const eventOnThisDay = events.find(
+              (event) =>
+                dayjs(event.dateStart).isSame(arg.date, 'day') ||
+                (event.dateEnd && dayjs(event.dateEnd).isSame(arg.date, 'day')),
+            );
+            if (eventOnThisDay) {
+              return getEventClass(eventOnThisDay.event);
+            }
+            return '';
+          }}
         />
         <div className={styles.notice}>
           <p>
