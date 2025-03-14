@@ -74,6 +74,7 @@ export default function Kalender() {
           initialView="dayGridMonth"
           locales={[koLocale]}
           locale="ko"
+          height="auto"
           events={events.map((event) => ({
             id: event.id,
             title: event.name,
