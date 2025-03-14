@@ -232,7 +232,7 @@ const Ovulation = () => {
               </button>
             </div>
             <div className={styles.notice}>
-              <p>* 계산결과는 컨디션과 건강 상태, 환경 차이로 결과가 달라질 수 있습니다.</p>
+              <p>계산결과는 컨디션과 건강 상태, 환경 차이로 결과가 달라질 수 있습니다.</p>
             </div>
           </div>
         </div>

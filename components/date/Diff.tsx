@@ -164,8 +164,8 @@ export default function Diff() {
               </button>
             </div>
             <div className={styles.notice}>
-              <p>* 시작일은 카운팅되지 않습니다.</p>
-              <p>* 1개월은 30일로 계산됩니다.</p>
+              <p>시작일은 카운팅되지 않습니다.</p>
+              <p>1개월은 30일로 계산됩니다.</p>
             </div>
           </div>
         </div>

@@ -224,8 +224,8 @@ export default function Dday() {
               </button>
             </div>
             <div className={styles.notice}>
-              <p>* 디데이는 당일이므로 0일(D-day)로 처리됩니다.</p>
-              <p>* 디데이 이전은 ‘-’, 다음은 ‘+’ 처리됩니다.</p>
+              <p>디데이는 당일이므로 0일(D-day)로 처리됩니다.</p>
+              <p>디데이 이전은 ‘-’, 다음은 ‘+’ 처리됩니다.</p>
             </div>
           </div>
         </div>

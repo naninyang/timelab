@@ -572,8 +572,15 @@ section.section
   .notice
     p
       margin: ds.rem(2)
-      font-size: ds.rem(14)
+      font-size: ds.rem(12)
       color: ds.$hex-danger
+
+      &::before
+        content: '•'
+        display: inline-block
+        position: relative
+        top: ds.rem(-1)
+        padding-right: ds.rem(5)
 
   .dd-result
 

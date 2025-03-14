@@ -138,7 +138,7 @@ export default function Age() {
               </button>
             </div>
             <div className={styles.notice}>
-              <p>* 띠는 입춘 기준으로 달라집니다.</p>
+              <p>띠는 입춘 기준으로 달라집니다.</p>
             </div>
           </div>
         </div>

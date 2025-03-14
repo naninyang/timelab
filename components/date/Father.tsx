@@ -116,7 +116,7 @@ export default function Father() {
               </button>
             </div>
             <div className={styles.notice}>
-              <p>* 1개월은 30일로 계산됩니다.</p>
+              <p>1개월은 30일로 계산됩니다.</p>
             </div>
           </div>
         </div>
