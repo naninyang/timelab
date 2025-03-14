@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import dayjs from 'dayjs';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -13,9 +14,21 @@ interface Event {
   event: string;
 }
 
+export function useMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  const mobile = useMediaQuery({
+    query: `(max-width: ${991 / 16}rem)`,
+  });
+  useEffect(() => {
+    setIsMobile(mobile);
+  }, [mobile]);
+  return isMobile;
+}
+
 export default function Kalender() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loadedMonths, setLoadedMonths] = useState<string[]>([]);
+  const isMobile = useMobile();
 
   const fetchEvents = useCallback(
     (start: dayjs.Dayjs, end: dayjs.Dayjs) => {
@@ -39,21 +52,21 @@ export default function Kalender() {
     fetchEvents(dayjs().subtract(1, 'month').startOf('month'), dayjs().add(1, 'month').endOf('month'));
   }, [fetchEvents]);
 
-  const getEventColor = (eventType: string): string => {
+  const getEventClass = (eventType: string): string => {
     switch (eventType) {
       case '기념':
-        return '#007000';
+        return 'fc-event-memorial';
       case '기타':
-        return '#787878';
+        return 'fc-event-default';
       case '법정공휴일':
-        return '#B3261E';
+        return 'fc-event-holiday';
       default:
-        return 'gray';
+        return 'fc-event-default';
     }
   };
 
   return (
-    <section className={`${styles.section} ${styles['section-calendar']}`}>
+    <section className={`${styles.section} ${styles['section-calendar']} ${isMobile ? '_coffee' : '_latte'}`}>
       <div className={styles.module}>
         <h2>대한민국 디지털 달력</h2>
         <FullCalendar
@@ -69,8 +82,7 @@ export default function Kalender() {
             // fullcalendar에 존재하는 버그로 임시 +1일 처리함
             end: event.dateEnd ? dayjs(event.dateEnd).add(1, 'day').format('YYYY-MM-DD') : event.dateStart,
 
-            backgroundColor: getEventColor(event.event),
-            borderColor: getEventColor(event.event),
+            classNames: getEventClass(event.event),
           }))}
           datesSet={(info) => {
             const start = dayjs(info.start);
