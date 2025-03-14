@@ -90,15 +90,13 @@ export default function Kalender() {
             fetchEvents(start, end);
           }}
           dayCellClassNames={(arg) => {
-            const eventOnThisDay = events.find(
+            const hasHoliday = events.some(
               (event) =>
-                dayjs(event.dateStart).isSame(arg.date, 'day') ||
-                (event.dateEnd && dayjs(event.dateEnd).isSame(arg.date, 'day')),
+                (dayjs(event.dateStart).isSame(arg.date, 'day') ||
+                  (event.dateEnd && dayjs(event.dateEnd).isSame(arg.date, 'day'))) &&
+                event.event === '법정공휴일',
             );
-            if (eventOnThisDay) {
-              return getEventClass(eventOnThisDay.event);
-            }
-            return '';
+            return hasHoliday ? 'fc-event-holiday' : '';
           }}
         />
         <div className={styles.notice}>
