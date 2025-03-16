@@ -79,11 +79,10 @@ export default function Kalender() {
             id: event.id,
             title: event.name,
             start: event.dateStart,
+            classNames: getEventClass(event.event),
 
             // fullcalendar에 존재하는 버그로 임시 +1일 처리함
             end: event.dateEnd ? dayjs(event.dateEnd).add(1, 'day').format('YYYY-MM-DD') : event.dateStart,
-
-            classNames: getEventClass(event.event),
           }))}
           datesSet={(info) => {
             const start = dayjs(info.start);
