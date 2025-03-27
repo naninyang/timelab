@@ -30,6 +30,9 @@ section.section
   @include ds.mq(minLarge)
     margin: 0
 
+    &:last-of-type
+      padding-bottom: 0
+
     &.section-half
       max-width: none
       width: 50%
@@ -58,12 +61,6 @@ section.section
     flex-direction: column
     flex-grow: 1
     gap: ds.rem(13)
-
-  @include ds.mq(minLarge)
-    &:last-of-type
-      padding-bottom: 0
-
-  .module
     padding: ds.rem(17)
 
     @include ds.mq(minSmall)
@@ -629,7 +626,6 @@ section.section
     display: flex
     flex-direction: column
     align-items: center
-    max-width: ds.rem(384)
     width: 100%
     height: ds.rem(239)
 
