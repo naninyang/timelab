@@ -38,7 +38,8 @@ export default function Army() {
     }
   }, [year, month, day]);
 
-  const handleCalculate = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const enlistDate = dayjs(`${year}-${month}-${day}`);
     const dischargeDate = enlistDate.add(SERVICE_PERIODS[serviceType], 'day');
     const todayDiff = today.diff(enlistDate, 'day');
@@ -51,8 +52,9 @@ export default function Army() {
     <section className={`${styles.section} ${styles['section-army']}`}>
       <div className={styles.module}>
         <h2>전역일 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>전역일 계산폼</legend>
             <div className={styles.army}>
               <div className={`${styles.ymd} ${styles.lymd}`}>
                 <div className={styles.group}>
@@ -98,7 +100,7 @@ export default function Army() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleCalculate}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
@@ -106,10 +108,10 @@ export default function Army() {
               <p>결과는 행정효력이 없습니다.</p>
               <p>참고용으로만 활용하시고 정확한 내용은 병무청에서 확인하세요.</p>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {calculatedData && (
-          <div className={styles['result-container']}>
+          <div className={styles['result-container']} role="status" aria-live="polite" aria-atomic="true">
             {today.isAfter(calculatedData.dischargeDate) ? (
               <p>이미 전역/해제소집 되었습니다.</p>
             ) : (

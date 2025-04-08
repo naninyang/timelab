@@ -22,7 +22,8 @@ export default function Father() {
   const maxDays = getMaxDays(year, month);
   const days = Array.from({ length: maxDays }, (_, i) => i + 1);
 
-  const calculateDate = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const baseDate = new Date(year, month - 1, day);
     setCalculatedDate(() => {
       const newDate = new Date(baseDate);
@@ -53,8 +54,9 @@ export default function Father() {
     <section className={`${styles.section} ${styles['section-half']}`}>
       <div className={styles.module}>
         <h2>이전/이후 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>이전/이후 계산폼</legend>
             <div className={styles.ymd}>
               <div className={styles.group}>
                 <select
@@ -111,18 +113,18 @@ export default function Father() {
               </select>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={calculateDate}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
             <div className={styles.notice}>
               <p>1개월은 30일로 계산됩니다.</p>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
 
         {calculatedDate && (
-          <div className={styles.result}>
+          <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             <p>
               <strong>{calculatedDate}</strong> 입니다.
             </p>

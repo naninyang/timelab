@@ -72,7 +72,8 @@ export default function Pregnancy() {
   const [day, setDay] = useState<number>(today.day);
   const [result, setResult] = useState<PregnancyResult | null>(null);
 
-  const handleCalculate = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const res = calculatePregnancy(year, month, day);
     setResult(res);
   };
@@ -81,8 +82,9 @@ export default function Pregnancy() {
     <section className={`${styles.section} ${styles['section-half']} ${styles['section-female']}`}>
       <div className={styles.module}>
         <h2>출산예정일 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>출산예정일 계산폼</legend>
             <label htmlFor="pre-year" className={styles.anthor}>
               마지막 월경 시작일을 입력해 주세요
             </label>
@@ -119,7 +121,7 @@ export default function Pregnancy() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleCalculate}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
@@ -127,10 +129,10 @@ export default function Pregnancy() {
               <p>계산결과는 Naegele’s rule에 근거하여 계산된 결과입니다.</p>
               <p>임부의 컨디션과 건강 상태, 환경 차이로 출산일이 달라질 수 있습니다.</p>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {result && (
-          <div className={styles['result-container']}>
+          <div className={styles['result-container']} role="status" aria-live="polite" aria-atomic="true">
             <dl>
               <div>
                 <dt>임신주수</dt>

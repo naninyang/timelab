@@ -30,7 +30,8 @@ export default function Age() {
     }
   }, [birthYear, birthMonth, birthDay]);
 
-  const calculateAge = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
     const refDate = new Date(refYear, refMonth - 1, refDay);
 
@@ -61,8 +62,9 @@ export default function Age() {
     <section className={styles.section}>
       <div className={styles.module}>
         <h2>나이 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>나이계산 폼</legend>
             <div className={styles['event-container']}>
               <div className={`${styles.ymd} ${styles.lymd}`}>
                 <div className={styles.group}>
@@ -133,17 +135,20 @@ export default function Age() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={calculateAge}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
             <div className={styles.notice}>
               <p>띠는 입춘 기준으로 달라집니다.</p>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         <div
           className={`${styles.result} ${styles['result-age']}`}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
           dangerouslySetInnerHTML={{ __html: result || '' }}
         />
       </div>

@@ -22,7 +22,8 @@ export default function EventAnniversary() {
     }
   }, [year, month, day]);
 
-  const calculateDate = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const today = new Date();
     const eventDate = new Date(Number(year), Number(month) - 1, Number(day));
     const diffTime = today.getTime() - eventDate.getTime();
@@ -86,8 +87,9 @@ export default function EventAnniversary() {
     <section className={`${styles.section} ${styles['section-event-anniversary']} ${styles['section-half']}`}>
       <div className={styles.module}>
         <h2>기념일 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>기념일 계산폼</legend>
             <div className={`${styles.group} ${styles['event-name']}`}>
               <label htmlFor="anniversary-name">이벤트</label>
               <div className={styles.eventName}>
@@ -134,14 +136,14 @@ export default function EventAnniversary() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={calculateDate}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {result && (
-          <div className={styles.result}>
+          <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             <p dangerouslySetInnerHTML={{ __html: result }} />
           </div>
         )}

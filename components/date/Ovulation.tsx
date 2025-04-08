@@ -48,7 +48,8 @@ const Ovulation = () => {
     }
   };
 
-  const handleCalculate = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     if (
       unknownCycle &&
       new Date(selectedPrevPeriod.year, selectedPrevPeriod.month - 1, selectedPrevPeriod.day) >=
@@ -93,8 +94,9 @@ const Ovulation = () => {
     >
       <div className={styles.module}>
         <h2>배란일 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>배란일 계산폼</legend>
             <label htmlFor="ovu-after-year" className={styles.anthor}>
               최근 생리 시작일을 입력해 주세요
             </label>
@@ -227,16 +229,24 @@ const Ovulation = () => {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleCalculate}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
             <div className={styles.notice}>
               <p>계산결과는 컨디션과 건강 상태, 환경 차이로 결과가 달라질 수 있습니다.</p>
             </div>
-          </div>
-        </div>
-        {result && <div className={styles.result} dangerouslySetInnerHTML={{ __html: result }} />}
+          </fieldset>
+        </form>
+        {result && (
+          <div
+            className={styles.result}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            dangerouslySetInnerHTML={{ __html: result }}
+          />
+        )}
       </div>
     </section>
   );

@@ -27,7 +27,8 @@ export default function Diff() {
   const maxEndDays = getMaxDays(endYear, endMonth);
   const endDays = Array.from({ length: maxEndDays }, (_, i) => i + 1);
 
-  const calculateDifference = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const startDate = new Date(startYear, startMonth - 1, startDay);
     const endDate = new Date(endYear, endMonth - 1, endDay);
     const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
@@ -86,8 +87,9 @@ export default function Diff() {
     <section className={`${styles.section} ${styles['section-half']} ${styles['section-anthor']}`}>
       <div className={styles.module}>
         <h2>날짜 차이 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>날짜 차이 계산폼</legend>
             <div className={`${styles.ymd} ${styles.lymd}`}>
               <div className={styles.group}>
                 <label htmlFor="diff-start-year">시작일</label>
@@ -159,7 +161,7 @@ export default function Diff() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={calculateDifference}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
@@ -167,9 +169,17 @@ export default function Diff() {
               <p>시작일은 카운팅되지 않습니다.</p>
               <p>1개월은 30일로 계산됩니다.</p>
             </div>
-          </div>
-        </div>
-        {differenceText && <div className={styles.result} dangerouslySetInnerHTML={{ __html: differenceText }} />}
+          </fieldset>
+        </form>
+        {differenceText && (
+          <div
+            className={styles.result}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            dangerouslySetInnerHTML={{ __html: differenceText }}
+          />
+        )}
       </div>
     </section>
   );

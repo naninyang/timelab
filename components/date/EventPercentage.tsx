@@ -16,7 +16,8 @@ export default function EventPercentage() {
     return new Date(year, month, 0).getDate();
   }
 
-  function calculateEventProgress() {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     if (!eventName.trim()) {
       setResult('<p><strong>이벤트 이름을 입력해주세요.</strong></p>');
       setProgress(null);
@@ -78,7 +79,7 @@ export default function EventPercentage() {
       );
       setProgress(Number(progressPercent));
     }
-  }
+  };
 
   function formatDuration(days: number): string {
     const years = Math.floor(days / 365);
@@ -100,8 +101,9 @@ export default function EventPercentage() {
     <section className={`${styles.section} ${styles['section-event-percentage']}`}>
       <div className={styles.module}>
         <h2>이벤트 퍼센트 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>이벤트 퍼센트 계산폼</legend>
             <div className={`${styles.group} ${styles['event-name']}`}>
               <label htmlFor="event-name">이벤트</label>
               <div className={styles.eventName}>
@@ -191,14 +193,14 @@ export default function EventPercentage() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={calculateEventProgress}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {result && (
-          <div className={styles['result-container']}>
+          <div className={styles['result-container']} role="status" aria-live="polite" aria-atomic="true">
             <div
               className={`${styles.result} ${styles['event-percentage-result']}`}
               dangerouslySetInnerHTML={{ __html: result }}

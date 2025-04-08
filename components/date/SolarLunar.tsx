@@ -35,7 +35,8 @@ export default function SolarLunar() {
     }
   }, [year, month, day]);
 
-  const handleConvert = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     const dateObj = new Date(year, month - 1, day);
     const isHolidayToday = isHoliday(dateObj);
 
@@ -60,8 +61,9 @@ export default function SolarLunar() {
     <section className={`${styles.section} ${styles['section-solu']}`}>
       <div className={styles.module}>
         <h2>양력/음력 변환</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>양력/음력 변환폼</legend>
             <div className={styles.solu}>
               <div className={styles.ymd}>
                 <div className={styles.group}>
@@ -106,16 +108,16 @@ export default function SolarLunar() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleConvert}>
+              <button type="submit">
                 <span>변환</span>
               </button>
             </div>
             <div className={styles.notice}>
               <p>음력→양력 변환시 윤달과 평달 중 평달만 표시됩니다.</p>
             </div>
-          </div>
-        </div>
-        <div className={styles.result}>
+          </fieldset>
+        </form>
+        <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
           <ul dangerouslySetInnerHTML={{ __html: result }} />
         </div>
       </div>

@@ -68,7 +68,8 @@ export default function Dday() {
     }
   };
 
-  const handleCalculate = () => {
+  const handleCcalculate = (e: React.FormEvent) => {
+    e.preventDefault();
     if (isTodaySelected) {
       setDDay(today);
     }
@@ -102,8 +103,9 @@ export default function Dday() {
     <section className={`${styles.section} ${styles['section-dday']}`}>
       <div className={styles.module}>
         <h2>디데이 계산</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleCcalculate}>
+          <fieldset>
+            <legend>디데이 계산폼</legend>
             <div className={styles.wrapper}>
               <div className={`${styles.ymd} ${styles.lymd}`}>
                 <div className={styles.group}>
@@ -219,7 +221,7 @@ export default function Dday() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleCalculate}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
@@ -227,11 +229,16 @@ export default function Dday() {
               <p>디데이는 당일이므로 0일(D-day)로 처리됩니다.</p>
               <p>디데이 이전은 ‘-’, 다음은 ‘+’ 처리됩니다.</p>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
 
         {result && dayOfWeekResult && (
-          <div className={`${styles.result} ${styles['dd-result']}`}>
+          <div
+            className={`${styles.result} ${styles['dd-result']}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             <p dangerouslySetInnerHTML={{ __html: result }} />
             <p dangerouslySetInnerHTML={{ __html: dayOfWeekResult }} />
           </div>
