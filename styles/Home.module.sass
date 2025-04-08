@@ -91,7 +91,7 @@ section.section
       max-width: none
       width: 100%
 
-    .fieldset
+    fieldset
       .ymd
         padding-bottom: ds.rem(9)
 
@@ -359,7 +359,7 @@ section.section
         font-size: ds.rem(24)
         @include ds.fw(900)
 
-  .fieldset
+  fieldset
     display: flex
     flex-direction: column
     gap: ds.rem(5)
@@ -537,8 +537,7 @@ section.section
         body[data-theme='dark'] &
           background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
 
-      &:hover,
-      &:focus
+      &:hover, &:focus-visible
         border-color: ds.$hex-accent-light
         color: ds.$hex-white
 
@@ -547,7 +546,7 @@ section.section
           color: ds.$hex-black
 
       &:hover::before,
-      &:focus::before
+      &:focus-visible::before
         transform: translate(-50%, -50%) scale(1)
 
       span
@@ -696,7 +695,7 @@ section.section
           background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
 
       &:hover,
-      &:focus
+      &:focus-visible
         border-color: ds.$hex-accent-light
         color: ds.$hex-white
 
@@ -705,7 +704,7 @@ section.section
           color: ds.$hex-black
 
       &:hover::before,
-      &:focus::before
+      &:focus-visible::before
         transform: translate(-50%, -50%) scale(1)
 
       span
