@@ -261,6 +261,8 @@ section.section
               @include ds.hidden-box
               width: ds.rem(24)
               height: ds.rem(24)
+              z-index: 1
+              cursor: pointer
 
             label
               display: inline-block
@@ -347,6 +349,8 @@ section.section
               @include ds.hidden-box
               width: ds.rem(24)
               height: ds.rem(24)
+              z-index: 1
+              cursor: pointer
 
             label
               display: inline-block
@@ -355,82 +359,100 @@ section.section
               font-weight: 700
               white-space: nowrap
 
-      .timeline
-        display: flex
-        flex-direction: column
-        gap: ds.rem(17)
-
-        .headline
-          display: flex
-          justify-content: space-between
-
-          h3
-            font-size: ds.rem(18)
-            font-weight: 900
-            color: ds.$hex-accent-light
-
-            body[data-theme='dark'] &
-              color: ds.$hex-accent-dark
-
-          .controls
-            display: flex
-            gap: ds.rem(12)
-
-            .button-group
-              button
-                &:first-of-type
-                  border-bottom-right-radius: 0
-                  border-top-right-radius: 0
-                  margin-right: -1px
-
-                &:last-of-type
-                  border-bottom-left-radius: 0
-                  border-top-left-radius: 0
-
-        .list
+      .timeline-container
+        .timeline
           display: flex
           flex-direction: column
           gap: ds.rem(17)
 
-          @include ds.mq(minLarge)
-            gap: ds.rem(12)
-
-          > li
+          .headline
             display: flex
-            align-items: flex-start
-            gap: ds.rem(23)
+            justify-content: space-between
 
-            strong
-              position: relative
-              top: ds.rem(4)
-              width: ds.rem(90)
-              text-align: right
-              @include ds.fw(700)
+            h3
               font-size: ds.rem(18)
+              font-weight: 900
+              color: ds.$hex-accent-light
 
-            ul
+              body[data-theme='dark'] &
+                color: ds.$hex-accent-dark
+
+            .controls
               display: flex
-              @include ds.col
-              gap: ds.rem(7)
+              gap: ds.rem(12)
 
-              @include ds.mq(maxMedium)
-                flex-direction: column
+              .button-group
+                button
+                  &:first-of-type
+                    border-bottom-right-radius: 0
+                    border-top-right-radius: 0
+                    margin-right: -1px
 
-              li
-                div
-                  display: inline-flex
+                  &:last-of-type
+                    border-bottom-left-radius: 0
+                    border-top-left-radius: 0
+
+          .list
+            display: flex
+            flex-direction: column
+            gap: ds.rem(17)
+
+            @include ds.mq(minLarge)
+              gap: ds.rem(12)
+
+            > li
+              display: flex
+              align-items: flex-start
+              gap: ds.rem(23)
+              border: ds.rem(2) solid transparent
+              padding: 0 ds.rem(7)
+
+              &.today
+                border-color: ds.$hex-accent-light
+                border-radius: ds.rem(3)
+                padding: ds.rem(7)
+
+                body[data-theme='dark'] &
+                  border-color: ds.$hex-accent-dark
+
+              &.weekend, &.holiday
+                strong
+                  color: ds.$hex-accent-light
+
+                  body[data-theme='dark'] &
+                    color: ds.$hex-accent-dark
+
+              strong
+                position: relative
+                top: ds.rem(4)
+                width: ds.rem(90)
+                text-align: right
+                @include ds.fw(700)
+                font-size: ds.rem(18)
+
+              ul
+                display: flex
+                @include ds.col
+                gap: ds.rem(7)
+
+                @include ds.mq(maxMedium)
                   flex-direction: column
 
-                  em, span
+                li
+                  div
                     display: inline-flex
+                    flex-direction: column
 
-                  em
-                    font-size: ds.rem(14)
-                    font-weight: 700
-                    font-style: normal
+                    em, span
+                      display: inline-flex
 
-                  span
-                    font-size: ds.rem(16)
+                    em
+                      font-size: ds.rem(14)
+                      font-weight: 700
+                      font-style: normal
+
+                    span
+                      font-size: ds.rem(16)
 
   .event-container
     display: flex

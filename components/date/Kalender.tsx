@@ -132,23 +132,35 @@ export default function Kalender() {
             </div>
           </div>
           <ul className={styles.list}>
-            {Object.entries(grouped).map(([dateKey, events]) => (
-              <li key={dateKey}>
-                <strong>{dateKey}</strong>
-                <ul>
-                  {events.map((event) => (
-                    <li key={event.id}>
-                      <div className={`fc-event ${getEventClass(event.event)}`}>
-                        {event.dateEnd && event.dateEnd !== event.dateStart && (
-                          <em>({dayjs(event.dateEnd).format('YYYY년 M월 D일')}까지)</em>
-                        )}
-                        <span>{event.name}</span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
+            {Object.entries(grouped).map(([dateKey, events]) => {
+              const sampleDate = events[0]?.dateStart;
+              const date = dayjs(sampleDate);
+              const isToday = date.isSame(dayjs(), 'day');
+              const isWeekend = [0, 6].includes(date.day());
+              const isHoliday = events.some((event) => event.event === '법정공휴일');
+
+              const classNames = [isToday && styles.today, isWeekend && styles.weekend, isHoliday && styles.holiday]
+                .filter(Boolean)
+                .join(' ');
+
+              return (
+                <li key={dateKey} className={classNames} aria-label={isToday ? '오늘' : undefined}>
+                  <strong>{dateKey}</strong>
+                  <ul>
+                    {events.map((event) => (
+                      <li key={event.id}>
+                        <div className={`fc-event ${getEventClass(event.event)}`}>
+                          {event.dateEnd && event.dateEnd !== event.dateStart && (
+                            <em>({dayjs(event.dateEnd).format('YYYY년 M월 D일')}까지)</em>
+                          )}
+                          <span>{event.name}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
             {Object.keys(grouped).length === 0 && <li>이달의 이벤트가 없습니다.</li>}
           </ul>
         </div>
