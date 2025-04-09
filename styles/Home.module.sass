@@ -235,6 +235,11 @@ section.section
               align-items: center
               width: ds.rem(24)
               height: ds.rem(24)
+              position: relative
+              background-color: ds.$hex-white
+
+              body[data-theme='dark'] &
+                background-color: ds.$hex-dark
 
               &.checked
                 svg
@@ -253,7 +258,9 @@ section.section
                       fill: rgba(ds.$hex-light, .7)
 
             input
-              @include ds.screen-reader-only
+              @include ds.hidden-box
+              width: ds.rem(24)
+              height: ds.rem(24)
 
             label
               display: inline-block
@@ -281,6 +288,149 @@ section.section
       height: auto!important
       font-size: ds.rem(16)!important
       font-weight: 500
+
+  &.section-calendar
+    .module
+      > p
+        font-weight: 500
+        color: ds.$hex-danger
+
+      > .headline
+        display: flex
+
+        @include ds.mq(maxMedium)
+          flex-direction: column
+          gap: ds.rem(7)
+
+        @include ds.mq(minLarge)
+          justify-content: space-between
+
+        .checkboxes
+          display: flex
+          gap: ds.rem(12)
+
+          .checkbox
+            display: flex
+            align-items: center
+            gap: ds.rem(5)
+            position: relative
+
+            > div
+              display: flex
+              justify-content: center
+              align-items: center
+              width: ds.rem(24)
+              height: ds.rem(24)
+              position: relative
+              background-color: ds.$hex-white
+
+              body[data-theme='dark'] &
+                background-color: ds.$hex-dark
+
+              &.checked
+                svg
+                  path
+                    fill: ds.$hex-accent-light
+
+                    body[data-theme='dark'] &
+                      fill: ds.$hex-accent-dark
+
+              &.unchecked
+                svg
+                  path
+                    fill: rgba(ds.$hex-dark, .7)
+
+                    body[data-theme='dark'] &
+                      fill: rgba(ds.$hex-light, .7)
+
+            input
+              @include ds.hidden-box
+              width: ds.rem(24)
+              height: ds.rem(24)
+
+            label
+              display: inline-block
+              height: auto
+              font-size: ds.rem(16)
+              font-weight: 700
+              white-space: nowrap
+
+      .timeline
+        display: flex
+        flex-direction: column
+        gap: ds.rem(17)
+
+        .headline
+          display: flex
+          justify-content: space-between
+
+          h3
+            font-size: ds.rem(18)
+            font-weight: 900
+            color: ds.$hex-accent-light
+
+            body[data-theme='dark'] &
+              color: ds.$hex-accent-dark
+
+          .controls
+            display: flex
+            gap: ds.rem(12)
+
+            .button-group
+              button
+                &:first-of-type
+                  border-bottom-right-radius: 0
+                  border-top-right-radius: 0
+                  margin-right: -1px
+
+                &:last-of-type
+                  border-bottom-left-radius: 0
+                  border-top-left-radius: 0
+
+        .list
+          display: flex
+          flex-direction: column
+          gap: ds.rem(17)
+
+          @include ds.mq(minLarge)
+            gap: ds.rem(12)
+
+          > li
+            display: flex
+            align-items: flex-start
+            gap: ds.rem(23)
+
+            strong
+              position: relative
+              top: ds.rem(4)
+              width: ds.rem(80)
+              text-align: right
+              @include ds.fw(700)
+              font-size: ds.rem(18)
+
+            ul
+              display: flex
+              @include ds.col
+              gap: ds.rem(7)
+
+              @include ds.mq(maxMedium)
+                flex-direction: column
+
+              li
+                div
+                  display: inline-flex
+                  flex-direction: column
+
+                  em, span
+                    display: inline-flex
+
+                  em
+                    font-size: ds.rem(14)
+                    font-weight: 700
+                    font-style: normal
+
+                  span
+                    font-size: ds.rem(16)
 
   .event-container
     display: flex
