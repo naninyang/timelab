@@ -133,6 +133,10 @@ main
     .fc-scrollgrid
       border: 0
 
+      th, td
+        body[data-theme='dark'] &
+          border-color: ds.$hex-dark
+
   .fc
     &-toolbar-title
       font-size: ds.rem(18)
@@ -185,12 +189,14 @@ main
 
     &-col-header-cell
       background-color: transparent
+      padding-top: ds.rem(23)
       padding-bottom: ds.rem(23)
       font-size: ds.rem(12)
       font-weight: 900
       color: ds.$hex-gray-light
 
       body[data-theme='dark'] &
+        background-color: ds.$hex-dark
         color: ds.$hex-gray-dark
 
     &-col-header-cell-cushion
@@ -323,14 +329,21 @@ main
           .fc-event-title, em, span
             color: #911F27
 
+            body[data-theme='dark'] &
+              color: rgba(#FFFFFF, .5)
+
         &-event-default
           background: linear-gradient(to right, rgba(#4A4947, .3), rgba(#4A4947, .1))
 
           .fc-event-title, em, span
-            color: #4A4947
+            color: #121212
+
+            body[data-theme='dark'] &
+              color: #B0B0B0
 
     &-daygrid-day-number
       font-weight: 500
+
       ._coffee &
         padding: 0 ds.rem(3) ds.rem(5)
 
