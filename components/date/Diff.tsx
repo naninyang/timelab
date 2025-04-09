@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 export default function Diff() {
@@ -161,9 +162,7 @@ export default function Diff() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>시작일은 카운팅되지 않습니다.</p>

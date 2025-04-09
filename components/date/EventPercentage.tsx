@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 export default function EventPercentage() {
@@ -193,9 +194,7 @@ export default function EventPercentage() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
           </fieldset>
         </form>

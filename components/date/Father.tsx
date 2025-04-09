@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 export default function Father() {
@@ -113,9 +114,7 @@ export default function Father() {
               </select>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>1개월은 30일로 계산됩니다.</p>

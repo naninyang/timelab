@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 interface DateInfo {
@@ -121,9 +122,7 @@ export default function Pregnancy() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>계산결과는 Naegele’s rule에 근거하여 계산된 결과입니다.</p>

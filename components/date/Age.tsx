@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 const getZodiac = (year: number, month: number, day: number) => {
@@ -135,9 +136,7 @@ export default function Age() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>띠는 입춘 기준으로 달라집니다.</p>

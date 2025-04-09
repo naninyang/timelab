@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { isHoliday, getLunar, getSolar } from 'holiday-kr';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 const TENKAN = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계'];
@@ -108,9 +109,7 @@ export default function SolarLunar() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>변환</span>
-              </button>
+              <RippleButton type="submit">변환</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>음력→양력 변환시 윤달과 평달 중 평달만 표시됩니다.</p>

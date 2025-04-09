@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 const SERVICE_PERIODS: Record<string, number> = {
@@ -100,9 +101,7 @@ export default function Army() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>결과는 행정효력이 없습니다.</p>

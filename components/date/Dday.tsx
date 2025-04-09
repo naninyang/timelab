@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { format, differenceInDays, isToday } from 'date-fns';
 import { Switch } from '../Svgs';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 interface DateState {
@@ -221,9 +222,7 @@ export default function Dday() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>디데이는 당일이므로 0일(D-day)로 처리됩니다.</p>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Checked, Unchecked } from '../Svgs';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 const getDateOptions = (minOffset: number, maxOffset: number) => {
@@ -229,9 +230,7 @@ const Ovulation = () => {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
             <div className={styles.notice}>
               <p>계산결과는 컨디션과 건강 상태, 환경 차이로 결과가 달라질 수 있습니다.</p>
