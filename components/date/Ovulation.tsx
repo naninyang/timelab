@@ -149,6 +149,19 @@ const Ovulation = () => {
               </div>
             </div>
             <div className={styles.ymd}>
+              <div className={styles.checkbox}>
+                <input id="cycle" type="checkbox" checked={unknownCycle} onChange={handleUnknownCycleChange} />
+                {unknownCycle ? (
+                  <div className={styles.checked}>
+                    <Checked />
+                  </div>
+                ) : (
+                  <div className={styles.unchecked}>
+                    <Unchecked />
+                  </div>
+                )}
+                <label htmlFor="cycle">주기 모름</label>
+              </div>
               {unknownCycle ? (
                 <div className={styles.ymd}>
                   <label className={styles.anthor}>그전 생리 시작일을 입력해 주세요</label>
@@ -215,19 +228,6 @@ const Ovulation = () => {
                   </div>
                 </div>
               )}
-              <div className={styles.checkbox}>
-                <input id="cycle" type="checkbox" checked={unknownCycle} onChange={handleUnknownCycleChange} />
-                {unknownCycle ? (
-                  <div className={styles.checked}>
-                    <Checked />
-                  </div>
-                ) : (
-                  <div className={styles.unchecked}>
-                    <Unchecked />
-                  </div>
-                )}
-                <label htmlFor="cycle">주기 모름</label>
-              </div>
             </div>
             <div className={styles.submit}>
               <RippleButton type="submit">계산</RippleButton>

@@ -230,13 +230,17 @@ section.section
             right: 0
 
             > div
+              background-color: ds.$hex-white
               display: flex
               justify-content: center
               align-items: center
               width: ds.rem(24)
               height: ds.rem(24)
-              position: relative
-              background-color: ds.$hex-white
+              position: absolute
+              top: 50%
+              left: 0
+              transform: translateY(-50%)
+              border-radius: ds.rem(24)
 
               body[data-theme='dark'] &
                 background-color: ds.$hex-dark
@@ -261,12 +265,14 @@ section.section
               @include ds.hidden-box
               width: ds.rem(24)
               height: ds.rem(24)
-              z-index: 1
-              cursor: pointer
+              appearance: none
+              border-radius: ds.rem(24)
 
             label
+              position: relative
               display: inline-block
               height: auto
+              padding-left: ds.rem(27)
               font-size: ds.rem(16)
               font-weight: 700
               white-space: nowrap
@@ -314,7 +320,6 @@ section.section
           .checkbox
             display: flex
             align-items: center
-            gap: ds.rem(5)
             position: relative
 
             > div
@@ -323,8 +328,12 @@ section.section
               align-items: center
               width: ds.rem(24)
               height: ds.rem(24)
-              position: relative
               background-color: ds.$hex-white
+              position: absolute
+              top: 50%
+              left: 0
+              transform: translateY(-50%)
+              border-radius: ds.rem(14)
 
               body[data-theme='dark'] &
                 background-color: ds.$hex-dark
@@ -349,12 +358,12 @@ section.section
               @include ds.hidden-box
               width: ds.rem(24)
               height: ds.rem(24)
-              z-index: 1
-              cursor: pointer
 
             label
+              position: relative
               display: inline-block
               height: auto
+              padding-left: ds.rem(27)
               font-size: ds.rem(16)
               font-weight: 700
               white-space: nowrap
